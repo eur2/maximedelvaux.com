@@ -14,6 +14,7 @@
   // import Front from "../components/Front.svelte";
   // import Post from "../components/Post.svelte";
   import Video from "../components/Video.svelte";
+  import Carousel from "@beyonk/svelte-carousel";
 
   // let searchTerm = "";
   // $: filteredPosts = posts.filter(
@@ -53,6 +54,13 @@
   </div>
   </a>
   </article>
+  <!-- <article>
+    <Carousel perPage={{ 800: 1 }} duration={0} draggable={true} dots={false}>
+      <span class="control" slot="left-control"></span>
+      {@html post.content.rendered}
+      <span class="control" slot="right-control"></span>
+      </Carousel>
+  </article> -->
   {/each}
   {/if}
 
