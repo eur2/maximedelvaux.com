@@ -8,7 +8,7 @@
   }
 </script>
 <script>
-      import Video from "../components/Video.svelte";
+      // import Video from "../components/Video.svelte";
       import Carousel from '@beyonk/svelte-carousel'
   export let post;
 </script>
@@ -18,20 +18,25 @@
         justify-content: space-between;
     }
 </style>
-
+<svelte:head>
+	<title>{post.title.rendered}</title>
+</svelte:head>
 <header>
   <h1>{post.title.rendered}</h1>
-  <h1><a href='/'>×</a></h1>
+  <h1><a href='.'>×</a></h1>
 </header>
+
     <Carousel perPage={{ 800: 1 }} duration={0} draggable={true} dots={false}>
         <span class="control" slot="left-control"></span>
+        {#if post.content.rendered}
         {@html post.content.rendered}
+        {/if}
 
         <span class="control" slot="right-control"></span>
         </Carousel>
 
-    {#if post.acf.video}
+    <!-- {#if post.acf.video}
     <Video src={post.acf.video.url}/>
     {/if}
-    <div>{@html post.acf.body_text}</div>
+    <div>{@html post.acf.body_text}</div> -->
 

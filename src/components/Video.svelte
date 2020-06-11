@@ -1,13 +1,7 @@
 <script>
   export let src;
 </script>
-<style>
-  video {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
-</style>
+<style></style>
 
 <video autoplay>
   <source src="{src}" type="video/mp4" />

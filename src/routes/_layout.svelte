@@ -1,4 +1,4 @@
-<script context="module">
+<!-- <script context="module">
   export function preload({ params, query }) {
     return this.fetch(`https://pl.maop.fr/wp-json/wp/v2/pages`)
       .then((r) => r.json())
@@ -6,7 +6,7 @@
         return { posts };
       });
   }
-</script>
+</script> -->
 
 <script>
   // import Header from "../components/Header.svelte";

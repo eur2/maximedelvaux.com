@@ -87,14 +87,15 @@ em {
 .pointer {
   cursor: pointer;
 }
+video,
 img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
   object-fit: contain !important;
 }
-.img {
-  width: 50%;
-}
+/* img {
+  max-width: 100%;
+} */
 h1,
 h2,
 h3,

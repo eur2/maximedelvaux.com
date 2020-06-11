@@ -15,15 +15,18 @@
   // import Post from "../components/Post.svelte";
   import Video from "../components/Video.svelte";
 
-  let searchTerm = "";
-  $: filteredPosts = posts.filter(
-    (post) => post.title.rendered.toLowerCase().indexOf(searchTerm) !== -1
-  );
+  // let searchTerm = "";
+  // $: filteredPosts = posts.filter(
+  //   (post) => post.title.rendered.toLowerCase().indexOf(searchTerm) !== -1
+  // );
   // import { onMount } from "svelte";
-  // onMount(() => {
+  // onMount(() => {})
 </script>
+<svelte:head>
+	<title>Sapper project template</title>
+</svelte:head>
 <nav class="sticky t0 p251251 bg-white flex jc-sb">
-  <form role="search">
+  <!-- <form role="search">
     <input
       type="text"
       name="search"
@@ -31,26 +34,26 @@
       placeholder="Recherche"
       bind:value="{searchTerm}"
     />
-  </form>
-  <a href="https://www.instagram.com/plan_libre/" rel="noopener" target="_blank"
-    >Instagram</a
-  >
+  </form> -->
+  <a href="info">Information</a>
 </nav>
 <main>
-  {#each filteredPosts as post}
+  {#if posts && posts.length > 0}
+  {#each posts as post}
   <article>
     <a rel="prefetch" href="{post.slug}">
+      <div>
     <h2>{post.title.rendered}</h2>
-    <!-- <div>{@html post.content.rendered}</div> -->
     {#if post.acf.image}
-    <div>
       <img src="{post.acf.image.sizes.large}" alt="md" />
-    </div>
     {/if}
     {#if post.acf.video}
     <Video src={post.acf.video.url}/>
     {/if}
+  </div>
   </a>
   </article>
   {/each}
+  {/if}
+
 </main>
