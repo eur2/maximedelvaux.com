@@ -42,7 +42,7 @@
   {#if posts && posts.length > 0}
   {#each posts as post}
   <article>
-    <a rel="prefetch" href="{post.slug}">
+    <a href="{post.slug}">
       <div>
     <h2>{post.title.rendered}</h2>
     {#if post.acf.image}
