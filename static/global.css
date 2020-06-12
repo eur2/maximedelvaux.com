@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 html {
   text-size-adjust: 100%;
@@ -11,11 +12,11 @@ html {
 body {
   /* font-family: serif; */
   font-family: "Helvetica Neue", sans-serif;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 30px;
-  line-height: 1.2;
-  letter-spacing: -0.007em;
-  /* word-spacing: -0.02em; */
+  line-height: 1.15;
+  /* letter-spacing: -0.007em; */
+  word-spacing: -0.02em;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
@@ -46,15 +47,18 @@ p a:hover,
   text-decoration: underline;
   color: rgb(255, 0, 255);
 }
-p {
+/* p {
   margin-block-start: 1em;
   margin-block-end: 1em;
-}
+} */
 .bc {
   background-color: rgb(255, 0, 255);
 }
 .bg-white {
   background-color: white;
+}
+form {
+  width: 100px;
 }
 button,
 input {
@@ -65,6 +69,7 @@ input {
   border: 0;
   cursor: pointer;
   background-color: transparent;
+  width: auto;
 }
 .btn {
   width: auto;
@@ -88,6 +93,10 @@ em {
 .pointer {
   cursor: pointer;
 }
+figure {
+  display: flex;
+  height: 100vh;
+}
 video,
 img {
   width: 100%;
@@ -105,8 +114,11 @@ h4 {
 } */
 h1,
 h2,
-h3 {
+h3,
+h4,
+p {
   font-size: 1em;
+  font-weight: bold;
 }
 /* article {
 }
@@ -191,7 +203,7 @@ article header:hover a {
   padding: 1em;
 }
 .p25 {
-  padding: 0 0.25em 0 0.25em;
+  padding: 0.25em 0.5em 0.25em 0.5em;
 }
 .flex2 {
   flex: 2;

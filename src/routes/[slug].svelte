@@ -8,37 +8,107 @@
   }
 </script>
 <script>
-  // import Video from "../components/Video.svelte";
-  // import Carousel from "@beyonk/svelte-carousel";
+  let visible;
+  function handleToggle() {
+    visible = !visible;
+  }
   import Siema from "siema";
   import { onMount } from "svelte";
   onMount(() => {
-    new Siema();
+    const mySiema = new Siema({
+      duration: 0,
+      draggable: true,
+      loop: true,
+    });
+    const prev = document.querySelector(".prev");
+    const next = document.querySelector(".next");
+
+    prev.addEventListener("click", () => mySiema.prev());
+    next.addEventListener("click", () => mySiema.next());
   });
   export let post;
 </script>
 <style>
   header {
     position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  }
+  /* .modal {
+    position: fixed;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     display: flex;
-    justify-content: space-between;
-    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+  }
+  p {
+    margin: 10%;
+  } */
+  .modal {
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10; */
+    width: 100%;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    padding: 0.5em;
+  }
+  .modal a {
+    color: white;
+  }
+  .next {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  }
+  .prev {
+    position: fixed;
+    bottom: 0;
+    left: 0;
   }
 </style>
-<!-- <svelte:head>
+<svelte:head>
   <title>{post.title.rendered}</title>
-</svelte:head> -->
-<header class="p25">
-  <h1><a href=".">Maxime Delvaux ×</a></h1>
-  <h1>{post.title.rendered}</h1>
+</svelte:head>
+<header>
+  <div class="flex jc-sb w100 p25">
+    <button on:click="{handleToggle}">
+      {post.title.rendered} {visible ? '×' : ''}
+    </button>
+    <h1><a href="#{post.id}">Maxime Delvaux</a></h1>
+  </div>
+  {#if visible}
+  <div class="modal" on:click="{handleToggle}">
+    <!-- <button class="p close mixblend">×</button> -->
+    <p>
+      The concept of the interior is fundamental in architectural design. Yet
+      there are very few studies that approach it as a separate field of
+      inquiry. Behind the permanence of buildings’ façades, all sorts of
+      transformations, adjustments and modifications are carried out. From this
+      perspective, a study of our interiors provides valuable information about
+      the new challenges to which architectural practice must rise.
+    </p>
+  </div>
+  {/if}
 </header>
 
 <div class="siema">
   {@html post.content.rendered}
 </div>
+<button class="prev">Prev</button>
+<button class="next">Next</button>
 
 <!-- {@html post.content.rendered} -->
 
