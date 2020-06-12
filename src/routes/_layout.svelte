@@ -13,6 +13,12 @@
   // import Subscribe from "../components/Subscribe.svelte";
   // export let posts;
 </script>
+<style>
+  body {
+    font-family: "helvetica neue";
+    font-weight: 500;
+  }
+</style>
 
 <!-- <Header>
   {#each posts as post} {#if post.slug === 'header'} {@html

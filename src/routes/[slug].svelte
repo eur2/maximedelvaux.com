@@ -19,16 +19,21 @@
 </script>
 <style>
   header {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-between;
+    z-index: 100;
   }
 </style>
 <!-- <svelte:head>
   <title>{post.title.rendered}</title>
 </svelte:head> -->
-<header>
+<header class="p25">
+  <h1><a href=".">Maxime Delvaux ×</a></h1>
   <h1>{post.title.rendered}</h1>
-  <h1><a href=".">×</a></h1>
 </header>
 
 <div class="siema">
