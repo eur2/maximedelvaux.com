@@ -1,6 +1,6 @@
-<svelte:head>
+<!-- <svelte:head>
   <title>About</title>
-</svelte:head>
+</svelte:head> -->
 
 <h1>About this site</h1>
 

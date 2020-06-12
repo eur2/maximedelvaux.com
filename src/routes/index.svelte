@@ -23,9 +23,9 @@
   // import { onMount } from "svelte";
   // onMount(() => {})
 </script>
-<svelte:head>
+<!-- <svelte:head>
 	<title>Sapper project template</title>
-</svelte:head>
+</svelte:head> -->
 <nav class="sticky t0 p251251 bg-white flex jc-sb">
   <!-- <form role="search">
     <input
@@ -36,13 +36,13 @@
       bind:value="{searchTerm}"
     />
   </form> -->
-  <a href="info">Information</a>
+  <a rel=prefetch href="info">Information</a>
 </nav>
 <main>
   {#if posts && posts.length > 0}
   {#each posts as post}
   <article>
-    <a href="{post.slug}">
+    <a rel=prefetch href="{post.slug}">
       <div>
     <h2>{post.title.rendered}</h2>
     {#if post.acf.image}

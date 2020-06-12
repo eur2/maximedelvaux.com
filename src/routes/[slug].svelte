@@ -23,9 +23,9 @@
     justify-content: space-between;
   }
 </style>
-<svelte:head>
+<!-- <svelte:head>
   <title>{post.title.rendered}</title>
-</svelte:head>
+</svelte:head> -->
 <header>
   <h1>{post.title.rendered}</h1>
   <h1><a href=".">×</a></h1>
