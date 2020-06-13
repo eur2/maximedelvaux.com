@@ -1,7 +1,7 @@
 <script context="module">
   //https://pl.maop.fr/wp-json/wp/v2/posts?custom_per_page=200
   export function preload({ params, query }) {
-    return this.fetch(`https://eurogroupe.org/dev/wp/wp-json/wp/v2/posts`)
+    return this.fetch(`https://eurogroupe.org/dev/wp/wp-json/wp/v2/posts?_embed&per_page=100`)
       .then((r) => r.json())
       .then((posts) => {
         return { posts };
@@ -35,10 +35,10 @@
     height: 100vh;
   }
   .modal {
-    /* position: ;
+    position: fixed;
     top: 0;
     left: 0;
-    right: 0; */
+    right: 0;
     width: 100%;
     /* display: flex;
     justify-content: center;
@@ -56,22 +56,27 @@
     color: white;
   }
   .index{
-    width:25%;
+    flex:25%;
     display: flex;
     align-items: center;
     margin: .5em;
+  }
+  button{
+    padding-left: 0.5em;
+  padding-right: 0.5em;
   }
 </style>
 <svelte:head>
 	<title>Sapper project template</title>
 </svelte:head>
 <header class="fixed l0 t0 r0 p25 flex flexend z10">
-  <h1><a class={visible ? 'white' : ''} href=".">Maxime Delvaux</a>, <a class={visible ? 'white' : ''} href="#" on:click="{handleToggle}">Info {visible ? '×' : ''}</a></h1>
+  <h1><a class={visible ? 'white' : ''} href=".">Maxime Delvaux</a></h1>
 </header>
 {#if visible}
 <div class="modal">
   <!-- <div class="flex jc-center"><button on:click="{handleToggle}">×</button></div> -->
-  <p class="flex jc-center"><a href="mailto:maxdelv@gmail.com">Mail</a>, <a href="tel:0032472427942">Mobile</a></p>
+  <p class="flex jc-center"><a href="mailto:maxdelv@gmail.com">Mail, </a>
+    <a href="tel:0032472427942"> Mobile</a></p>
 
 <p> Maxime Delvaux (1984, Belgium) lives and works in Brussels. Belgian photographer specialised in architecture, he graduates from INRACI in Brussels in 2008. He also worked on the creation of pictures with the curators of the Belgian Pavilion at the Venice Biennale of Architecture 2014. In addition, he is the author of the video clips and pictures of the exhibition/catalogue of WBA in Paris: “entrer:” and his work is presented in the exhibition Landskating organised by the Villa Noailles in Hyères in 2016.</p>
 
@@ -80,6 +85,7 @@
 
 
 <nav class="fixed b0 l0 r0 p25 flex jc-center">
+  <button on:click="{handleToggle}">Info {visible ? '×' : ''}</button>
   <button on:click="{handleIndex}">Index {index ? '×' : ''}</button>
   <form role="search">
     <input
@@ -96,7 +102,7 @@
   {#each filteredPosts as post}
   <article id={post.id} class={index ? 'index' : ''}>
     <header class="t0 p25 {index ? 'none' : 'sticky'}">
-      <h2>{post.title.rendered}</h2>
+      <h2><a rel=prefetch href="{post.slug}">{post.title.rendered}</a></h2>
     </header>
     <a rel=prefetch href="{post.slug}">
       <div class={index ? '' : 'thumb'}>

@@ -78,16 +78,20 @@
     bottom: 0;
     left: 0;
   }
+  .black{
+    background-color: black;
+    color: white;
+  }
 </style>
 <svelte:head>
   <title>{post.title.rendered}</title>
 </svelte:head>
-<header>
+<header class={visible ? 'black' : ''}>
   <div class="flex jc-sb w100 p25">
     <button on:click="{handleToggle}">
       {post.title.rendered} {visible ? '×' : ''}
     </button>
-    <h1><a href="#{post.id}">Maxime Delvaux</a></h1>
+    <h1><a class={visible ? 'black' : ''} href="#{post.id}">Maxime Delvaux</a></h1>
   </div>
   {#if visible}
   <div class="modal" on:click="{handleToggle}">
