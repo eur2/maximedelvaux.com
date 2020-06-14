@@ -18,35 +18,16 @@
   $: filteredPosts = posts.filter(
     (post) => post.title.rendered.toLowerCase().indexOf(searchTerm) !== -1
   );
+  // import { onMount } from "svelte";
+  // onMount(() => {})
   let visible;
   function handleToggle() {
     visible = !visible;
   }
-  import { onMount } from "svelte";
-  onMount(() => {
-    var lazyImages = [].slice.call(document.querySelectorAll(".lazy"));
-    if (typeof IntersectionObserver !== "undefined") {
-      let lazyImageObserver = new IntersectionObserver(function (
-        entries,
-        observer
-      ) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            let lazyImage = entry.target;
-            lazyImage.src = lazyImage.dataset.src;
-            // lazyImage.srcset = lazyImage.dataset.srcset;
-            lazyImage.classList.remove("lazy");
-            lazyImage.classList.add("loaded");
-            lazyImageObserver.unobserve(lazyImage);
-          }
-        });
-      });
-
-      lazyImages.forEach(function (lazyImage) {
-        lazyImageObserver.observe(lazyImage);
-      });
-    }
-  });
+  let index;
+  function handleIndex() {
+    index = !index;
+  }
 </script>
 <style>
   .thumb{
@@ -124,7 +105,7 @@
 
 
 <nav class="fixed b0 l0 r0 p25 flex jc-center z10">
-  <a rel=prefetch href="/archive">Archive</a>
+  <button on:click="{handleIndex}">Index {index ? '×' : ''}</button>
   <form role="search">
     <input
       type="text"
@@ -135,15 +116,15 @@
     />
   </form>
 </nav>
-<main>
+<main class={index ? 'flex wrap' : ''}>
   {#if filteredPosts && filteredPosts.length > 0}
   {#each filteredPosts as post}
-  <article id={post.id}>
+  <article id={post.id} class={index ? 'index' : ''}>
 
     <a rel=prefetch href="{post.slug}">
-      <div class="thumb">
+      <div class={index ? '' : 'thumb'}>
     {#if post.acf.image}
-      <img class="lazy" data-src="{post.acf.image.sizes.large}" alt="md" />
+      <img src="{post.acf.image.sizes.large}" alt="md" />
     {/if}
     {#if post.acf.video}
     <Video src={post.acf.video.url}/>
@@ -151,7 +132,7 @@
 
   </div>
   </a>
-  <header class="t0 p25 sticky">
+  <header class="t0 p25 {index ? 'none' : 'sticky'}">
     <h2><a rel=prefetch href="{post.slug}">{post.title.rendered}</a></h2>
   </header>
   </article>

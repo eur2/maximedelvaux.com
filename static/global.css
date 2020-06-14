@@ -15,14 +15,14 @@ body {
   font-weight: bold;
   font-size: 30px;
   line-height: 1.15;
-  /* letter-spacing: -0.007em; */
+  letter-spacing: -0.01em;
   word-spacing: -0.02em;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
 ::selection {
   text-shadow: none;
-  background: rgb(0, 255, 0);
+  background: rgb(0, 187, 247);
 }
 a,
 a:active,
@@ -99,6 +99,7 @@ figure {
 }
 video,
 img {
+  display: block;
   width: 100%;
   height: auto;
   object-fit: contain !important;
@@ -204,6 +205,9 @@ article header:hover a {
 }
 .p25 {
   padding: 0.25em 0.5em 0.25em 0.5em;
+}
+.p5 {
+  padding: 0.5em;
 }
 .flex2 {
   flex: 2;

@@ -15,10 +15,18 @@
   import Siema from "siema";
   import { onMount } from "svelte";
   onMount(() => {
+    function printSlideIndex() {
+  document.querySelector('.index-current').innerHTML = this.currentSlide+1
+}
+document.querySelector('.index-total').innerHTML = document.querySelector('.siema').childElementCount
+
+// console.log(document.querySelector('.siema').childElementCount)
     const mySiema = new Siema({
       duration: 0,
       draggable: true,
       loop: true,
+      onInit: printSlideIndex,
+  onChange: printSlideIndex,
     });
     const prev = document.querySelector(".prev");
     const next = document.querySelector(".next");
@@ -68,20 +76,27 @@
   .modal a {
     color: white;
   }
-  .next {
+  .next, .prev {
     position: fixed;
     bottom: 0;
-    right: 0;
+    height: 100%;
+    width: 50%;
   }
   .prev {
-    position: fixed;
-    bottom: 0;
     left: 0;
+  }
+  .next{
+    right: 0;
   }
   .black{
     background-color: black;
     color: white;
   }
+  @media only screen and (max-width: 600px) {
+    .next, .prev {
+    display: none;
+  }
+}
 </style>
 <svelte:head>
   <title>{post.title.rendered}</title>
@@ -89,12 +104,15 @@
 <header class={visible ? 'black' : ''}>
   <div class="flex jc-sb w100 p25">
     <button on:click="{handleToggle}">
-      {post.title.rendered} {visible ? '×' : ''}
+      {post.title.rendered}{visible ? '' : ''}
     </button>
-    <h1><a class={visible ? 'black' : ''} href="#{post.id}">Maxime Delvaux</a></h1>
+    <button on:click="{handleToggle}">
+      {visible ? 'Info×' : ''}
+    </button>
+    <h1 class="{visible ? 'none' : '×'}"><a href="archive">×</a></h1>
   </div>
   {#if visible}
-  <div class="modal" on:click="{handleToggle}">
+  <div class="modal z10" on:click="{handleToggle}">
     <!-- <button class="p close mixblend">×</button> -->
     <p>
       The concept of the interior is fundamental in architectural design. Yet
@@ -111,8 +129,11 @@
 <div class="siema">
   {@html post.content.rendered}
 </div>
-<button class="prev">Prev</button>
-<button class="next">Next</button>
+<button class="prev"></button>
+<button class="next"></button>
+<div class="fixed b0 l0 p25">
+  <span class="index-current"></span><span>/</span><span class="index-total"></span>
+</div>
 
 <!-- {@html post.content.rendered} -->
 

@@ -18,6 +18,8 @@
   $: filteredPosts = posts.filter(
     (post) => post.title.rendered.toLowerCase().indexOf(searchTerm) !== -1
   );
+  // import { onMount } from "svelte";
+  // onMount(() => {})
   let visible;
   function handleToggle() {
     visible = !visible;
@@ -49,10 +51,6 @@
   });
 </script>
 <style>
-  .thumb{
-    display: flex;
-    height: 100vh;
-  }
   .modal {
     position: fixed;
     top: 0;
@@ -77,17 +75,17 @@
   .white{
     color: white;
   }
-  article.index{
-    flex:25%;
+  article{
+    flex:100%;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
   }
-  header.index{
+  article header{
     padding: 0;
 
   }
-  header.index h2{
+  h2{
     font-size: .5em;
   }
   button, form{
@@ -98,7 +96,7 @@
     color: black;
   }
   @media only screen and (max-width: 600px) {
-    article.index{
+    article{
     flex:50%;
   }}
 
@@ -124,7 +122,7 @@
 
 
 <nav class="fixed b0 l0 r0 p25 flex jc-center z10">
-  <a rel=prefetch href="/archive">Archive</a>
+  <a rel=prefetch href=".">Front</a>
   <form role="search">
     <input
       type="text"
@@ -135,15 +133,15 @@
     />
   </form>
 </nav>
-<main>
+<main class="flex wrap">
   {#if filteredPosts && filteredPosts.length > 0}
   {#each filteredPosts as post}
-  <article id={post.id}>
+  <article id={post.id} class="archive">
 
     <a rel=prefetch href="{post.slug}">
-      <div class="thumb">
+      <div>
     {#if post.acf.image}
-      <img class="lazy" data-src="{post.acf.image.sizes.large}" alt="md" />
+      <img class="lazy" data-src="{post.acf.image.sizes.medium_large}" alt="md" />
     {/if}
     {#if post.acf.video}
     <Video src={post.acf.video.url}/>
@@ -151,8 +149,8 @@
 
   </div>
   </a>
-  <header class="t0 p25 sticky">
-    <h2><a rel=prefetch href="{post.slug}">{post.title.rendered}</a></h2>
+  <header>
+    <h2>{post.title.rendered}</h2>
   </header>
   </article>
   <!-- <article>
