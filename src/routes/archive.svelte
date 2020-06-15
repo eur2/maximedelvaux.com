@@ -71,7 +71,7 @@
     <a rel="prefetch" href="{post.slug}">
       <div>
         {#if post.acf.image}
-        <img loading="lazy" src="{post.acf.image.sizes.large}" alt="md" />
+        <img loading="lazy" src="{post.acf.image.sizes.thumbnail}" alt="md" />
         {/if} {#if post.acf.video}
         <video autoplay>
           <source loading="lazy" src="{post.acf.video.url}" type="video/mp4" />
