@@ -1,5 +1,4 @@
 <script context="module">
-  //https://pl.maop.fr/wp-json/wp/v2/posts?custom_per_page=200
   export function preload({ params, query }) {
     return this.fetch(`https://eurogroupe.org/dev/wp/wp-json/wp/v2/posts?_embed&per_page=100`)
       .then((r) => r.json())
@@ -11,6 +10,8 @@
 
 <script>
   export let posts;
+  import Article from "../components/Article.svelte";
+
   // import Front from "../components/Front.svelte";
   // import Post from "../components/Post.svelte";
   import Video from "../components/Video.svelte";
@@ -41,7 +42,6 @@
           }
         });
       });
-
       lazyImages.forEach(function (lazyImage) {
         lazyImageObserver.observe(lazyImage);
       });
@@ -49,10 +49,11 @@
   });
 </script>
 <style>
-  .thumb{
+  .thumb {
     display: flex;
     height: 100vh;
   }
+
   .modal {
     position: fixed;
     top: 0;
@@ -68,47 +69,21 @@
     cursor: pointer;
     padding: .5em;
   }
-  .blue{
-  
-  }
-  .modal a{
+
+  .modal a {
     color: white;
   }
-  .white{
+
+  .white {
     color: white;
   }
-  article.index{
-    flex:25%;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  header.index{
-    padding: 0;
-
-  }
-  header.index h2{
-    font-size: .5em;
-  }
-  button, form{
-    padding-left: 0.25em;
-  padding-right: 0.25em;
-  }
-  input[type=text] {
-    color: black;
-  }
-  @media only screen and (max-width: 600px) {
-    article.index{
-    flex:50%;
-  }}
-
 </style>
 <svelte:head>
-	<title>Sapper project template</title>
+  <title>Sapper project template</title>
 </svelte:head>
 <header class="fixed l0 t0 r0 p25 flex flexend z10">
   <h1><button on:click="{handleToggle}">Maxime Delvaux</button></h1>
-{#if visible}
+  {#if visible}
 <div class="modal p25">
   <div class="w100 flex jc-sb">
     <p><span>Mail: </span><a href="mailto:maxdelv@gmail.com">maxdelv@gmail.com</a>
@@ -138,7 +113,7 @@
 <main>
   {#if filteredPosts && filteredPosts.length > 0}
   {#each filteredPosts as post}
-  <article id={post.id}>
+  <Article id={post.id} slug={post.slug} title={post.title.rendered}>
 
     <a rel=prefetch href="{post.slug}">
       <div class="thumb">
@@ -151,10 +126,7 @@
 
   </div>
   </a>
-  <header class="t0 p25 sticky">
-    <h2><a rel=prefetch href="{post.slug}">{post.title.rendered}</a></h2>
-  </header>
-  </article>
+  </Article>
   <!-- <article>
     <Carousel perPage={{ 800: 1 }} duration={0} draggable={true} dots={false}>
       <span class="control" slot="left-control"></span>

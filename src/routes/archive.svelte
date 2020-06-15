@@ -18,8 +18,6 @@
   $: filteredPosts = posts.filter(
     (post) => post.title.rendered.toLowerCase().indexOf(searchTerm) !== -1
   );
-  // import { onMount } from "svelte";
-  // onMount(() => {})
   let visible;
   function handleToggle() {
     visible = !visible;
@@ -43,7 +41,6 @@
           }
         });
       });
-
       lazyImages.forEach(function (lazyImage) {
         lazyImageObserver.observe(lazyImage);
       });
@@ -51,62 +48,22 @@
   });
 </script>
 <style>
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    z-index: 10;
-    background-color: black;
-    color: white;
-    cursor: pointer;
-    padding: .5em;
+  article {
+    width: 25%;
   }
-  .blue{
-  
-  }
-  .modal a{
-    color: white;
-  }
-  .white{
-    color: white;
-  }
-  article{
-    width:25%;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  article header{
-    padding: 0;
 
-  }
-  h2{
-    font-size: .5em;
-  }
-  button, form{
-    padding-left: 0.25em;
-  padding-right: 0.25em;
-  }
-  input[type=text] {
-    color: black;
-  }
   @media only screen and (max-width: 800px) {
-    article{
-    width:50%;
-  }}
-
+    article {
+      width: 50%;
+    }
+  }
 </style>
 <svelte:head>
-	<title>Sapper project template</title>
+  <title>Sapper project template</title>
 </svelte:head>
 <header class="fixed l0 t0 r0 p25 flex flexend z10">
   <h1><button on:click="{handleToggle}">Maxime Delvaux</button></h1>
-{#if visible}
+  {#if visible}
 <div class="modal p25">
   <div class="w100 flex jc-sb">
     <p><span>Mail: </span><a href="mailto:maxdelv@gmail.com">maxdelv@gmail.com</a>
@@ -136,22 +93,22 @@
 <main class="flex wrap">
   {#if filteredPosts && filteredPosts.length > 0}
   {#each filteredPosts as post}
-  <article id={post.id} class="archive">
+  <article id={post.id} class="flex wrap ai-center">
 
     <a rel=prefetch href="{post.slug}">
       <div>
     {#if post.acf.image}
-      <img class="lazy" data-src="{post.acf.image.sizes.medium_large}" alt="md" />
+    <img src="{post.acf.image.sizes.large}" alt="md" />
     {/if}
     {#if post.acf.video}
     <Video src={post.acf.video.url}/>
     {/if}
-
+    <header>
+      <h4>{post.title.rendered}</h4>
+    </header>
   </div>
   </a>
-  <header>
-    <h2>{post.title.rendered}</h2>
-  </header>
+
   </article>
   <!-- <article>
     <Carousel perPage={{ 800: 1 }} duration={0} draggable={true} dots={false}>
