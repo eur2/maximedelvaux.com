@@ -76,7 +76,7 @@
     color: white;
   }
   article{
-    flex:100%;
+    width:25%;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -95,9 +95,9 @@
   input[type=text] {
     color: black;
   }
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 800px) {
     article{
-    flex:50%;
+    width:50%;
   }}
 
 </style>
