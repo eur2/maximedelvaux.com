@@ -14,7 +14,7 @@
 </script>
 <style>
     article {
-        padding-bottom: 25%;
+        margin-bottom: 25%;
     }
 </style>
 <svelte:window on:scroll="{handleScroll}" />

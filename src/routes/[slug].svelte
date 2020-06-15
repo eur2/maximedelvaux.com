@@ -16,9 +16,12 @@
   import { onMount } from "svelte";
   onMount(() => {
     function printSlideIndex() {
-      document.querySelector('.index-current').innerHTML = this.currentSlide + 1
+      document.querySelector(".index-current").innerHTML =
+        this.currentSlide + 1;
     }
-    document.querySelector('.index-total').innerHTML = document.querySelector('.siema').childElementCount
+    document.querySelector(".index-total").innerHTML = document.querySelector(
+      ".siema"
+    ).childElementCount;
 
     // console.log(document.querySelector('.siema').childElementCount)
     const mySiema = new Siema({
@@ -36,48 +39,10 @@
   });
   export let post;
 </script>
-<style>
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-  }
-
-  .next,
-  .prev {
-    position: fixed;
-    bottom: 0;
-    height: 100%;
-    width: 50%;
-  }
-
-  .prev {
-    left: 0;
-  }
-
-  .next {
-    right: 0;
-  }
-
-  .black {
-    background-color: black;
-    color: white;
-  }
-
-  @media only screen and (max-width: 600px) {
-
-    .next,
-    .prev {
-      display: none;
-    }
-  }
-</style>
 <svelte:head>
   <title>{post.title.rendered}</title>
 </svelte:head>
-<header>
+<header class="fixed t0 l0 r0 z10">
   <div class="flex jc-sb w100 p25">
     <button on:click="{handleToggle}">
       {post.title.rendered}
@@ -87,27 +52,29 @@
 </header>
 
 {#if visible}
-  <div class="modal" >
-    <div on:click="{handleToggle}">
-      <p class="w100 center">×</p>
-      <p>
+<div class="modal">
+  <div on:click="{handleToggle}">
+    <p class="w100 center"><button on:click="{handleToggle}">×</button></p>
+    <p>
       The concept of the interior is fundamental in architectural design. Yet
       there are very few studies that approach it as a separate field of
       inquiry. Behind the permanence of buildings’ façades, all sorts of
       transformations, adjustments and modifications are carried out. From this
       perspective, a study of our interiors provides valuable information about
-      the new challenges to which architectural practice must rise.</p>
-    </div>
+      the new challenges to which architectural practice must rise.
+    </p>
   </div>
-  {/if}
+</div>
+{/if}
 
 <div class="siema">
   {@html post.content.rendered}
 </div>
-<button class="prev"></button>
-<button class="next"></button>
+<button class="prev fixed b0 l0"></button>
+<button class="next fixed b0 r0"></button>
 <div class="fixed b0 l0 p25">
-  <span class="index-current"></span><span>/</span><span class="index-total"></span>
+  <span class="index-current"></span><span>/</span
+  ><span class="index-total"></span>
 </div>
 
 <!-- {@html post.content.rendered} -->
