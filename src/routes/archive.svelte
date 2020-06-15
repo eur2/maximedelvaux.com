@@ -22,30 +22,30 @@
   $: filteredPosts = posts.filter(
     (post) => post.title.rendered.toLowerCase().indexOf(searchTerm) !== -1
   );
-  import { onMount } from "svelte";
-  onMount(() => {
-    var lazyImages = [].slice.call(document.querySelectorAll(".lazy"));
-    if (typeof IntersectionObserver !== "undefined") {
-      let lazyImageObserver = new IntersectionObserver(function (
-        entries,
-        observer
-      ) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            let lazyImage = entry.target;
-            lazyImage.src = lazyImage.dataset.src;
-            // lazyImage.srcset = lazyImage.dataset.srcset;
-            lazyImage.classList.remove("lazy");
-            lazyImage.classList.add("loaded");
-            lazyImageObserver.unobserve(lazyImage);
-          }
-        });
-      });
-      lazyImages.forEach(function (lazyImage) {
-        lazyImageObserver.observe(lazyImage);
-      });
-    }
-  });
+  // import { onMount } from "svelte";
+  // onMount(() => {
+  //   var lazyImages = [].slice.call(document.querySelectorAll(".lazy"));
+  //   if (typeof IntersectionObserver !== "undefined") {
+  //     let lazyImageObserver = new IntersectionObserver(function (
+  //       entries,
+  //       observer
+  //     ) {
+  //       entries.forEach(function (entry) {
+  //         if (entry.isIntersecting) {
+  //           let lazyImage = entry.target;
+  //           lazyImage.src = lazyImage.dataset.src;
+  //           // lazyImage.srcset = lazyImage.dataset.srcset;
+  //           lazyImage.classList.remove("lazy");
+  //           lazyImage.classList.add("loaded");
+  //           lazyImageObserver.unobserve(lazyImage);
+  //         }
+  //       });
+  //     });
+  //     lazyImages.forEach(function (lazyImage) {
+  //       lazyImageObserver.observe(lazyImage);
+  //     });
+  //   }
+  // });
 </script>
 <svelte:head>
   <title>Maxime Delvaux: Archive</title>

@@ -21,10 +21,6 @@
   $: filteredPosts = posts.filter(
     (post) => post.title.rendered.toLowerCase().indexOf(searchTerm) !== -1
   );
-  let visible;
-  function handleToggle() {
-    visible = !visible;
-  }
   import { onMount } from "svelte";
   onMount(() => {
     var lazyImages = [].slice.call(document.querySelectorAll(".lazy"));
