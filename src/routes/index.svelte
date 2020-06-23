@@ -15,7 +15,10 @@
   export let posts;
   // import Front from "../components/Front.svelte";
   // import Post from "../components/Post.svelte";
-  // import Video from "../components/Video.svelte";
+  import Video from "../components/Video.svelte";
+  import Img from "../components/Img.svelte";
+  import VideoImg from "../components/VideoImg.svelte";
+
   import Header from "../components/Header.svelte";
 
   let searchTerm = "";
@@ -47,12 +50,41 @@
   //   }
   // });
   let randomPost = "";
+  // let r1, r2, r3, r4, r5 = "";
+  function randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+  $: r1 = posts[randomIntFromInterval(1, 5)];
+  $: r2 = posts[randomIntFromInterval(6, 10)];
+  $: r3 = posts[randomIntFromInterval(11, 15)];
+  $: r4 = posts[randomIntFromInterval(16, 20)];
+  $: r5 = posts[randomIntFromInterval(21, 25)];
+
+  // r1 = posts[randomIntFromInterval(1, 5)];
+  // r2 = posts[randomIntFromInterval(6, 10)];
+  // r3 = posts[randomIntFromInterval(11, 15)];
+  // r4 = posts[randomIntFromInterval(16, 20)];
+  // r5 = posts[randomIntFromInterval(21, 25)];
+  // console.log(r1);
+  // console.log(r2);
 
   import Siema from "siema";
   import { onMount } from "svelte";
   onMount(() => {
-    randomPost = posts[Math.floor(Math.random() * 20)];
-    console.log(randomPost)
+    // randomPost = posts[Math.floor(Math.random() * 20)];
+    // console.log(randomPost)
+    // function randomIntFromInterval(min, max) { 
+    //   return Math.floor(Math.random() * (max - min + 1) + min);
+    // }
+    // r1 = posts[randomIntFromInterval(1, 5)];
+    // r2 = posts[randomIntFromInterval(6, 10)];
+    // r3 = posts[randomIntFromInterval(11, 15)];
+    // r4 = posts[randomIntFromInterval(16, 20)];
+    // r5 = posts[randomIntFromInterval(21, 25)];
+    // console.log(r1);
+    // console.log(r2);
+
+
 
     const mySiema = new Siema({
       duration: 0,
@@ -72,32 +104,37 @@
 
 <Header />
 
-
-
-<div class="siema">
-  <figure>
-    <img src="{posts[1].acf.image.sizes.large}" alt="" />
-  </figure>
-  <figure>
-    <img src="{posts[5].acf.image.sizes.large}" alt="" />
-  </figure>
-  <figure>
-    <img src="{posts[10].acf.image.sizes.large}" alt="" />
-  </figure>
-  <figure>
-    <img src="{posts[15].acf.image.sizes.large}" alt="" />
-  </figure>
-
-</div>
-<button class="prev absolutee b0 l0"></button>
-<button class="next absolutee b0 r0"></button>
-
-<nav class="fixed b0 l0 r0 p25 flex jc-center z10">
+<!-- <div>{r3.title.rendered}</div>
+<div>{r4.title.rendered}</div>
+<div>{r5.title.rendered}</div> -->
+<nav class="fixed t0 l0 p25">
   <!-- <a rel="prefetch" href=".">Front</a> -->
   <form role="search">
     <input type="text" name="search" aria-label=" Search" placeholder="Search" bind:value="{searchTerm}" />
   </form>
 </nav>
+<div class="siema">
+  <VideoImg src="{r1}" />
+  <VideoImg src="{r2}" />
+  <VideoImg src="{r3}" />
+  <VideoImg src="{r4}" />
+  <VideoImg src="{r5}" />
+
+  <!-- <div>
+    {r1.title.rendered}
+    {#if r1.acf.video === false}
+    <Img src="{r1.acf.image.sizes.large}"/>
+  {:else}
+  <Video src="{r1.acf.video.url}"/>
+        {/if}
+        </div> -->
+
+
+</div>
+<button class="prev h90 absolute b0 l0"></button>
+<button class="next h90 absolute b0 r0"></button>
+
+
 <main class="flex wrap p125" id="main">
   {#if filteredPosts && filteredPosts.length > 0} {#each filteredPosts as post}
   <article id="{post.id}" class="flex wrap w25 p125">

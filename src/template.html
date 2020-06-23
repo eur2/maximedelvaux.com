@@ -1,333 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <!-- <meta name="theme-color" content="black" /> -->
-    <link
-      rel="preload"
-      href="NimbusSansPOT-Bold.woff2"
-      as="font"
-      crossorigin="anonymous"
-    />
-    %sapper.base%
 
-    <!-- <link rel="stylesheet" href="global.css" /> -->
-    <link rel="manifest" href="manifest.json" crossorigin="use-credentials" />
-    <!-- <link rel="icon" type="image/png" href="favicon.png" /> -->
-    <title>
-      MD
-    </title>
-    <meta name="description" content="desc" />
-    <meta name="og:title" content="MD" />
-    <meta name="og:description" content="d" />
-    <meta name="og:type" content="website" />
-    <meta name="og:image" content="favicon.png" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="MD" />
-    <meta name="twitter:description" content="d" />
-    <meta name="twitter:image" content="favicon.png" />
-    <style>
-      @font-face {
-        font-family: "HN";
-        src: url("NimbusSansPOT-Bold.woff") format("woff");
-        src: url("NimbusSansPOT-Bold.woff2") format("woff2");
-        font-weight: bold;
-        font-style: normal;
-        font-display: swap;
-      }
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <!-- <meta name="theme-color" content="black" /> -->
+  <link rel="preload" href="NimbusSansPOT-Bold.woff2" as="font" crossorigin="anonymous" />
+  %sapper.base%
 
-      html {
-        text-size-adjust: 100%;
-        -webkit-tap-highlight-color: transparent;
-        background-color: white;
-        color: black;
-      }
+  <!-- <link rel="stylesheet" href="global.css" /> -->
+  <link rel="manifest" href="manifest.json" crossorigin="use-credentials" />
+  <!-- <link rel="icon" type="image/png" href="favicon.png" /> -->
+  <title>
+    MD
+  </title>
+  <meta name="description" content="desc" />
+  <meta name="og:title" content="MD" />
+  <meta name="og:description" content="d" />
+  <meta name="og:type" content="website" />
+  <meta name="og:image" content="favicon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="MD" />
+  <meta name="twitter:description" content="d" />
+  <meta name="twitter:image" content="favicon.png" />
+  <style>
+    @font-face {
+      font-family: "HN";
+      src: url("NimbusSansPOT-Bold.woff") format("woff");
+      src: url("NimbusSansPOT-Bold.woff2") format("woff2");
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
+    }
 
-      body {
-        font-family: "HN", "Helvetica Neue", sans-serif;
-        font-weight: bold;
-        font-size: 30px;
-        line-height: 1.15;
-        letter-spacing: 0.04em;
-        /* word-spacing: -0.02em; */
-        -moz-osx-font-smoothing: grayscale;
-        -webkit-font-smoothing: antialiased;
-      }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      /* ::selection {
+    html {
+      text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+      background-color: white;
+      color: black;
+    }
+
+    body {
+      font-family: "HN", "Helvetica Neue", sans-serif;
+      font-weight: bold;
+      font-size: 30px;
+      line-height: 1.15;
+      letter-spacing: 0.04em;
+      /* word-spacing: -0.02em; */
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ::selection {
         text-shadow: none;
         background: rgb(0, 187, 247);
       } */
 
-      a,
-      a:active {
-        color: black;
-        text-decoration: none;
-      }
-      button:hover,
-      a:hover {
-        text-decoration: underline;
-        color: blue;
-        /* color: rgb(0, 187, 247); */
-      }
+    a,
+    a:active {
+      color: black;
+      text-decoration: none;
+    }
 
-      ul {
-        padding: 0;
-        list-style-type: none;
-      }
+    button:hover,
+    a:hover {
+      text-decoration: underline;
+      color: blue;
+      /* color: rgb(0, 187, 247); */
+    }
 
-      li {
-        display: block;
-      }
+    ul {
+      padding: 0;
+      list-style-type: none;
+    }
 
-      p a {
-        text-decoration: underline;
-      }
+    li {
+      display: block;
+    }
 
-      .bg-white {
-        background-color: white;
-      }
-      button,
-      input {
-        font: inherit;
-        color: inherit;
-        letter-spacing: inherit;
-        outline: 0;
-        border: 0;
-        cursor: pointer;
-        background-color: transparent;
-        width: auto;
-      }
-      form {
-        padding-left: 0.25em;
-        padding-right: 0.25em;
-        width: 100px;
-      }
+    p a {
+      text-decoration: underline;
+    }
 
-      input:focus {
-        color: blue;
-      }
-      .pointer {
-        cursor: pointer;
-      }
+    .bg-white {
+      background-color: white;
+    }
 
-      figure {
-        display: flex;
-        height: 100vh;
-      }
+    button,
+    input {
+      font: inherit;
+      color: inherit;
+      letter-spacing: inherit;
+      outline: 0;
+      border: 0;
+      cursor: pointer;
+      background-color: transparent;
+      width: auto;
+    }
 
-      video,
-      img {
-        display: block;
-        width: 100%;
-        height: auto;
-        object-fit: contain !important;
-        transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1);
-      }
+    form {
+      padding-left: 0.25em;
+      padding-right: 0.25em;
+      width: 100px;
+    }
 
-      .lazy {
-        opacity: 0;
-      }
+    input:focus {
+      color: blue;
+    }
 
-      .loaded {
-        opacity: 1;
-      }
+    .pointer {
+      cursor: pointer;
+    }
 
-      h1,
-      h2,
-      h3,
-      h4,
-      p {
-        font-size: 1em;
-        font-weight: bold;
-      }
+    figure {
+      display: flex;
+      height: 100vh;
+    }
 
-      h4 {
-        font-size: 0.5em;
-      }
-      .next,
-      .prev {
-        height: 100%;
-        width: 50%;
-      }
-      .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        /* display: flex;
+    figure.h90 {
+      height: 95vh;
+
+    }
+
+    video,
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain !important;
+      transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .lazy {
+      opacity: 0;
+    }
+
+    .loaded {
+      opacity: 1;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
+      font-size: 1em;
+      font-weight: bold;
+    }
+
+    h4 {
+      font-size: 0.5em;
+    }
+
+    .next,
+    .prev {
+      height: 100%;
+      width: 50%;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      /* display: flex;
     justify-content: center;
     align-items: center; */
-        z-index: 10;
-        background-color: black;
-        color: white;
-        cursor: pointer;
-        padding: 0.5em;
-      }
+      z-index: 10;
+      background-color: black;
+      color: white;
+      cursor: pointer;
+      padding: 0.5em;
+    }
 
-      .modal a {
-        color: blue;
-      }
-      .none {
-        display: none;
-      }
+    .modal a {
+      color: blue;
+    }
 
-      .block {
-        display: block;
-      }
+    .none {
+      display: none;
+    }
 
-      .non {
-        display: none;
-      }
-      .fixed {
-        position: fixed;
-      }
-      .relative {
-        position: relative;
-      }
-      .sticky {
-        position: sticky;
-      }
+    .block {
+      display: block;
+    }
 
-      .absolute {
-        position: absolute;
-      }
+    .non {
+      display: none;
+    }
 
-      .l0 {
-        left: 0;
-      }
+    .fixed {
+      position: fixed;
+    }
 
-      .t0 {
-        top: 0;
-      }
+    .relative {
+      position: relative;
+    }
 
-      .r0 {
-        right: 0;
-      }
+    .sticky {
+      position: sticky;
+    }
 
-      .b0 {
-        bottom: 0;
-      }
+    .absolute {
+      position: absolute;
+    }
 
-      .h100vh {
-        height: 100vh;
-      }
+    .l0 {
+      left: 0;
+    }
 
-      .w100 {
-        width: 100%;
-      }
-      .w25 {
-        width: 25%;
-      }
+    .t0 {
+      top: 0;
+    }
 
-      .z-1 {
-        z-index: -1;
-      }
+    .r0 {
+      right: 0;
+    }
 
-      .z2 {
-        z-index: 2;
-      }
+    .b0 {
+      bottom: 0;
+    }
 
-      .z10 {
-        z-index: 10;
-      }
+    .h100vh {
+      height: 100vh;
+    }
 
-      .center {
-        text-align: center;
-      }
+    .h90vh {
+      height: 90vh;
+    }
 
-      .m1 {
-        margin: 1em;
-      }
+    .h90 {
+      height: 90%;
+    }
 
-      .p1 {
-        padding: 1em;
-      }
-      .p125 {
-        padding: 0.125em;
-      }
-      .p25 {
-        padding: 0.25em;
-      }
+    .w100 {
+      width: 100%;
+    }
 
-      .p5 {
-        padding: 0.5em;
-      }
+    .w25 {
+      width: 25%;
+    }
 
-      .flex {
-        display: flex;
-      }
+    .z-2 {
+      z-index: -2;
+    }
 
-      .wrap {
-        flex-wrap: wrap;
-      }
+    .z-1 {
+      z-index: -1;
+    }
 
-      .column {
-        flex-direction: column;
-      }
+    .z2 {
+      z-index: 2;
+    }
 
-      .jc-center {
-        justify-content: center;
-      }
+    .z10 {
+      z-index: 10;
+    }
 
-      .jc-sb {
-        justify-content: space-between;
-      }
-      .ai-center {
-        align-items: center;
-      }
-      /* .hyphens {
+    .center {
+      text-align: center;
+    }
+
+    .m1 {
+      margin: 1em;
+    }
+
+    .p1 {
+      padding: 1em;
+    }
+
+    .p125 {
+      padding: 0.125em;
+    }
+
+    .p25 {
+      padding: 0.25em;
+    }
+
+    .p5 {
+      padding: 0.5em;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .wrap {
+      flex-wrap: wrap;
+    }
+
+    .column {
+      flex-direction: column;
+    }
+
+    .jc-center {
+      justify-content: center;
+    }
+
+    .jc-sb {
+      justify-content: space-between;
+    }
+
+    .ai-center {
+      align-items: center;
+    }
+
+    /* .hyphens {
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
 } */
-      @media only screen and (max-width: 800px) {
-        .w25 {
-          width: 50%;
-        }
-        .next,
-        .prev {
-          display: none;
-        }
+    @media only screen and (max-width: 800px) {
+      .w25 {
+        width: 50%;
       }
-      @media only screen and (max-width: 600px) {
-        body {
-          font-size: 22px;
-        }
-        .rel {
-          position: absolute;
-        }
 
-        /* .hyphens {
+      .next,
+      .prev {
+        display: none;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      body {
+        font-size: 22px;
+      }
+
+      .max {
+        top: auto;
+        bottom: 0;
+        right: auto;
+        left: 0;
+      }
+
+      nav {
+        /* top: auto;
+        bottom: 0;
+        left: auto;
+        right: 0; */
+        display: none;
+      }
+
+      /* .hyphens {
     hyphens: none;
   } */
-      }
-    </style>
-    <!-- Sapper generates a <style> tag containing critical CSS
+    }
+  </style>
+  <!-- Sapper generates a <style> tag containing critical CSS
 	     for the current page. CSS for the rest of the app is
 	     lazily loaded when it precaches secondary pages -->
-    %sapper.styles%
+  %sapper.styles%
 
-    <!-- This contains the contents of the <svelte:head> component, if
+  <!-- This contains the contents of the <svelte:head> component, if
 	     the current page has one -->
-    %sapper.head%
-  </head>
+  %sapper.head%
+</head>
 
-  <body>
-    <!-- The application will be rendered inside this element,
+<body>
+  <!-- The application will be rendered inside this element,
 	     because `src/client.js` references it -->
-    <div id="sapper">%sapper.html%</div>
+  <div id="sapper">%sapper.html%</div>
 
-    <!-- Sapper creates a <script> tag containing `src/client.js`
+  <!-- Sapper creates a <script> tag containing `src/client.js`
 	     and anything else it needs to hydrate the app and
 	     initialise the router -->
-    %sapper.scripts%
-  </body>
+  %sapper.scripts%
+</body>
+
 </html>

@@ -4,7 +4,7 @@
     visible = !visible;
   }
 </script>
-<header class="fixed t0 r0 p25 z10 rel">
+<header class="fixed t0 r0 p25 z10 max">
   <h1><button on:click="{handleToggle}">Maxime Delvaux</button></h1>
 </header>
 
