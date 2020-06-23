@@ -47,7 +47,7 @@
     <button on:click="{handleToggle}">
       {post.title.rendered}
     </button>
-    <a href="archive">×</a>
+    <a href=".">×</a>
   </div>
 </header>
 
