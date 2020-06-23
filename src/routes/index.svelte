@@ -16,7 +16,7 @@
   // import Front from "../components/Front.svelte";
   // import Post from "../components/Post.svelte";
   // import Video from "../components/Video.svelte";
-    import Header from "../components/Header.svelte";
+  import Header from "../components/Header.svelte";
 
   let searchTerm = "";
   $: filteredPosts = posts.filter(
@@ -46,9 +46,14 @@
   //     });
   //   }
   // });
+  let randomPost = "";
+
   import Siema from "siema";
   import { onMount } from "svelte";
   onMount(() => {
+    randomPost = posts[Math.floor(Math.random() * 20)];
+    console.log(randomPost)
+
     const mySiema = new Siema({
       duration: 0,
       draggable: true,
@@ -65,30 +70,35 @@
   <title>Maxime Delvaux: Archive</title>
 </svelte:head>
 
-<Header/>
+<Header />
 
 
 
-  <div class="siema">
-    <div>1</div>
-    <div>2</div>
-  </div>
-  <button class="prev absolutee b0 l0"></button>
-  <button class="next absolutee b0 r0"></button>
+<div class="siema">
+  <figure>
+    <img src="{posts[1].acf.image.sizes.large}" alt="" />
+  </figure>
+  <figure>
+    <img src="{posts[5].acf.image.sizes.large}" alt="" />
+  </figure>
+  <figure>
+    <img src="{posts[10].acf.image.sizes.large}" alt="" />
+  </figure>
+  <figure>
+    <img src="{posts[15].acf.image.sizes.large}" alt="" />
+  </figure>
+
+</div>
+<button class="prev absolutee b0 l0"></button>
+<button class="next absolutee b0 r0"></button>
 
 <nav class="fixed b0 l0 r0 p25 flex jc-center z10">
   <!-- <a rel="prefetch" href=".">Front</a> -->
   <form role="search">
-    <input
-      type="text"
-      name="search"
-      aria-label=" Search"
-      placeholder="Search"
-      bind:value="{searchTerm}"
-    />
+    <input type="text" name="search" aria-label=" Search" placeholder="Search" bind:value="{searchTerm}" />
   </form>
 </nav>
-<main class="flex wrap p125">
+<main class="flex wrap p125" id="main">
   {#if filteredPosts && filteredPosts.length > 0} {#each filteredPosts as post}
   <article id="{post.id}" class="flex wrap w25 p125">
     <a rel="prefetch" href="{post.slug}">

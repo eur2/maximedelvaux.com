@@ -47,7 +47,7 @@
     <button on:click="{handleToggle}">
       {post.title.rendered}
     </button>
-    <a href=".">×</a>
+    <a href="#{post.id}">×</a>
   </div>
 </header>
 
