@@ -48,7 +48,7 @@
         -webkit-tap-highlight-color: transparent;
         background-color: white;
         color: black;
-        height: -webkit-fill-available;
+        /* height: -webkit-fill-available; */
       }
 
       body {
@@ -60,8 +60,8 @@
         /* word-spacing: -0.02em; */
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
-        min-height: 100vh;
-        min-height: -webkit-fill-available;
+        /* min-height: 100vh;
+        min-height: -webkit-fill-available; */
       }
 
       /* ::selection {
@@ -128,10 +128,14 @@
       figure {
         display: flex;
         height: 100vh;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
       }
 
       figure.h90 {
-        height: 95vh;
+        height: 90vh;
+        min-height: 90vh;
+        min-height: -webkit-fill-available;
       }
 
       video,
