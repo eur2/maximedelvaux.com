@@ -66,7 +66,6 @@
   </div>
 </div>
 {/if}
-
 <div class="siema">
   {@html post.content.rendered}
 </div>
