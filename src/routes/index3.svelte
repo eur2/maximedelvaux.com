@@ -16,14 +16,39 @@
   // import Front from "../components/Front.svelte";
   // import Post from "../components/Post.svelte";
   import Video from "../components/Video.svelte";
+  import Img from "../components/Img.svelte";
   import VideoImg from "../components/VideoImg90.svelte";
+
   import Header from "../components/Header.svelte";
 
   let searchTerm = "";
   $: filteredPosts = posts.filter(
     (post) => post.title.rendered.toLowerCase().indexOf(searchTerm) !== -1
   );
-
+  // import { onMount } from "svelte";
+  // onMount(() => {
+  //   var lazyImages = [].slice.call(document.querySelectorAll(".lazy"));
+  //   if (typeof IntersectionObserver !== "undefined") {
+  //     let lazyImageObserver = new IntersectionObserver(function (
+  //       entries,
+  //       observer
+  //     ) {
+  //       entries.forEach(function (entry) {
+  //         if (entry.isIntersecting) {
+  //           let lazyImage = entry.target;
+  //           lazyImage.src = lazyImage.dataset.src;
+  //           // lazyImage.srcset = lazyImage.dataset.srcset;
+  //           lazyImage.classList.remove("lazy");
+  //           lazyImage.classList.add("loaded");
+  //           lazyImageObserver.unobserve(lazyImage);
+  //         }
+  //       });
+  //     });
+  //     lazyImages.forEach(function (lazyImage) {
+  //       lazyImageObserver.observe(lazyImage);
+  //     });
+  //   }
+  // });
   let randomPost = "";
   // let r1, r2, r3, r4, r5 = "";
   function randomIntFromInterval(min, max) {
@@ -34,6 +59,14 @@
   $: r3 = posts[randomIntFromInterval(11, 15)];
   $: r4 = posts[randomIntFromInterval(16, 20)];
   $: r5 = posts[randomIntFromInterval(21, 25)];
+
+  // r1 = posts[randomIntFromInterval(1, 5)];
+  // r2 = posts[randomIntFromInterval(6, 10)];
+  // r3 = posts[randomIntFromInterval(11, 15)];
+  // r4 = posts[randomIntFromInterval(16, 20)];
+  // r5 = posts[randomIntFromInterval(21, 25)];
+  // console.log(r1);
+  // console.log(r2);
 
   import Siema from "siema";
   import { onMount } from "svelte";
@@ -51,27 +84,7 @@
     // console.log(r1);
     // console.log(r2);
 
-    var lazyImages = [].slice.call(document.querySelectorAll(".lazy"));
-    if (typeof IntersectionObserver !== "undefined") {
-      let lazyImageObserver = new IntersectionObserver(function (
-        entries,
-        observer
-      ) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            let lazyImage = entry.target;
-            lazyImage.src = lazyImage.dataset.src;
-            lazyImage.srcset = lazyImage.dataset.srcset;
-            lazyImage.classList.remove("lazy");
-            lazyImage.classList.add("loaded");
-            lazyImageObserver.unobserve(lazyImage);
-          }
-        });
-      });
-      lazyImages.forEach(function (lazyImage) {
-        lazyImageObserver.observe(lazyImage);
-      });
-    }
+
 
     const mySiema = new Siema({
       duration: 0,
@@ -86,7 +99,7 @@
   });
 </script>
 <svelte:head>
-  <title>Maxime Delvaux</title>
+  <title>Maxime Delvaux: Archive</title>
 </svelte:head>
 
 <Header />
@@ -110,7 +123,7 @@
   <!-- <div>
     {r1.title.rendered}
     {#if r1.acf.video === false}
-    <img src="{r1.acf.image.sizes.large}"/>
+    <Img src="{r1.acf.image.sizes.large}"/>
   {:else}
   <Video src="{r1.acf.video.url}"/>
         {/if}
@@ -128,7 +141,7 @@
     <a rel="prefetch" href="{post.slug}">
       <div>
         {#if post.acf.image}
-        <img class="lazy" src="" data-src="{post.acf.image.sizes.thumbnail}" srcset="" data-srcset="{post.acf.image.sizes.thumbnail}" alt="md" />
+        <img loading="lazy" src="{post.acf.image.sizes.thumbnail}" alt="md" />
         {/if} {#if post.acf.video}
         <video autoplay>
           <source loading="lazy" src="{post.acf.video.url}" type="video/mp4" />
