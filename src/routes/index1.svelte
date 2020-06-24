@@ -1,6 +1,6 @@
 <script context="module">
   //https://pl.maop.fr/wp-json/wp/v2/posts?custom_per_page=200
-  export function preload({ params, query }) {
+  export async function preload({ params, query }) {
     return this.fetch(
       `https://eurogroupe.org/dev/wp/wp-json/wp/v2/posts?_embed&per_page=100`
     )

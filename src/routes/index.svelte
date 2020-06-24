@@ -1,6 +1,6 @@
 <script context="module">
   //https://pl.maop.fr/wp-json/wp/v2/posts?custom_per_page=200
-  export function preload({ params, query }) {
+  export async function preload({ params, query }) {
     return this.fetch(
       `https://eurogroupe.org/dev/wp/wp-json/wp/v2/posts?_embed&per_page=100`
     )
@@ -8,6 +8,7 @@
       .then((posts) => {
         return { posts };
       });
+      
   }
 </script>
 
@@ -25,7 +26,7 @@
   );
 
   // let randomPost = "";
-  // let r1, r2, r3, r4, r5 = "";
+  let r1, r2, r3, r4, r5 = "";
   function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
@@ -42,17 +43,17 @@
   // r5 = posts[randomIntFromInterval(21, 25)];
   import Siema from "siema";
   import { onMount } from "svelte";
-  let r1,r2,r3,r4,r5;
+  // let r1,r2,r3,r4,r5;
   // function randomIntFromInterval(min, max) { 
   //     return Math.floor(Math.random() * (max - min + 1) + min);
   //   }
   onMount(() => {
 
-    r1 = posts[randomIntFromInterval(1, 5)];
-    r2 = posts[randomIntFromInterval(6, 10)];
-    r3 = posts[randomIntFromInterval(11, 15)];
-    r4 = posts[randomIntFromInterval(16, 20)];
-    r5 = posts[randomIntFromInterval(21, 25)];
+    // r1 = posts[randomIntFromInterval(1, 5)];
+    // r2 = posts[randomIntFromInterval(6, 10)];
+    // r3 = posts[randomIntFromInterval(11, 15)];
+    // r4 = posts[randomIntFromInterval(16, 20)];
+    // r5 = posts[randomIntFromInterval(21, 25)];
 
     const mySiema = new Siema({
       duration: 0,
@@ -64,6 +65,7 @@
 
     prev.addEventListener("click", () => mySiema.prev());
     next.addEventListener("click", () => mySiema.next());
+    
 
     var lazyImages = [].slice.call(document.querySelectorAll(".lazy"));
     if (typeof IntersectionObserver !== "undefined") {
