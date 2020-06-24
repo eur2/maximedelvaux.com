@@ -24,7 +24,7 @@
     (post) => post.title.rendered.toLowerCase().indexOf(searchTerm) !== -1
   );
 
-  let randomPost = "";
+  // let randomPost = "";
   // let r1, r2, r3, r4, r5 = "";
   function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -35,21 +35,35 @@
   $: r4 = posts[randomIntFromInterval(16, 20)];
   $: r5 = posts[randomIntFromInterval(21, 25)];
 
+  // r1 = posts[randomIntFromInterval(1, 5)];
+  // r2 = posts[randomIntFromInterval(6, 10)];
+  // r3 = posts[randomIntFromInterval(11, 15)];
+  // r4 = posts[randomIntFromInterval(16, 20)];
+  // r5 = posts[randomIntFromInterval(21, 25)];
   import Siema from "siema";
   import { onMount } from "svelte";
+  let r1,r2,r3,r4,r5;
+  // function randomIntFromInterval(min, max) { 
+  //     return Math.floor(Math.random() * (max - min + 1) + min);
+  //   }
   onMount(() => {
-    // randomPost = posts[Math.floor(Math.random() * 20)];
-    // console.log(randomPost)
-    // function randomIntFromInterval(min, max) { 
-    //   return Math.floor(Math.random() * (max - min + 1) + min);
-    // }
-    // r1 = posts[randomIntFromInterval(1, 5)];
-    // r2 = posts[randomIntFromInterval(6, 10)];
-    // r3 = posts[randomIntFromInterval(11, 15)];
-    // r4 = posts[randomIntFromInterval(16, 20)];
-    // r5 = posts[randomIntFromInterval(21, 25)];
-    // console.log(r1);
-    // console.log(r2);
+
+    r1 = posts[randomIntFromInterval(1, 5)];
+    r2 = posts[randomIntFromInterval(6, 10)];
+    r3 = posts[randomIntFromInterval(11, 15)];
+    r4 = posts[randomIntFromInterval(16, 20)];
+    r5 = posts[randomIntFromInterval(21, 25)];
+
+    const mySiema = new Siema({
+      duration: 0,
+      draggable: true,
+      loop: true,
+    });
+    const prev = document.querySelector(".prev");
+    const next = document.querySelector(".next");
+
+    prev.addEventListener("click", () => mySiema.prev());
+    next.addEventListener("click", () => mySiema.next());
 
     var lazyImages = [].slice.call(document.querySelectorAll(".lazy"));
     if (typeof IntersectionObserver !== "undefined") {
@@ -73,16 +87,7 @@
       });
     }
 
-    const mySiema = new Siema({
-      duration: 0,
-      draggable: true,
-      loop: true,
-    });
-    const prev = document.querySelector(".prev");
-    const next = document.querySelector(".next");
 
-    prev.addEventListener("click", () => mySiema.prev());
-    next.addEventListener("click", () => mySiema.next());
   });
 </script>
 <svelte:head>
@@ -106,17 +111,6 @@
   <VideoImg src="{r3}" />
   <VideoImg src="{r4}" />
   <VideoImg src="{r5}" />
-
-  <!-- <div>
-    {r1.title.rendered}
-    {#if r1.acf.video === false}
-    <img src="{r1.acf.image.sizes.large}"/>
-  {:else}
-  <Video src="{r1.acf.video.url}"/>
-        {/if}
-        </div> -->
-
-
 </div>
 <button class="prev h90 absolute b0 l0"></button>
 <button class="next h90 absolute b0 r0"></button>
