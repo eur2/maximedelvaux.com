@@ -8,6 +8,7 @@
   }
 </script>
 <script>
+  export let post;
   let visible;
   function handleToggle() {
     visible = !visible;
@@ -37,7 +38,6 @@
     prev.addEventListener("click", () => mySiema.prev());
     next.addEventListener("click", () => mySiema.next());
   });
-  export let post;
 </script>
 <svelte:head>
   <title>{post.title.rendered}</title>

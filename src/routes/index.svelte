@@ -1,6 +1,6 @@
 <script context="module">
   //https://pl.maop.fr/wp-json/wp/v2/posts?custom_per_page=200
-  export async function preload({ params, query }) {
+  export function preload({ params, query }) {
     return this.fetch(
       `https://eurogroupe.org/dev/wp/wp-json/wp/v2/posts?_embed&per_page=100`
     )
@@ -30,30 +30,29 @@
   function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
-  $: r1 = posts[randomIntFromInterval(1, 5)];
-  $: r2 = posts[randomIntFromInterval(6, 10)];
-  $: r3 = posts[randomIntFromInterval(11, 15)];
-  $: r4 = posts[randomIntFromInterval(16, 20)];
-  $: r5 = posts[randomIntFromInterval(21, 25)];
+  // $: r1 = posts[randomIntFromInterval(1, 5)];
+  // $: r2 = posts[randomIntFromInterval(6, 10)];
+  // $: r3 = posts[randomIntFromInterval(11, 15)];
+  // $: r4 = posts[randomIntFromInterval(16, 20)];
+  // $: r5 = posts[randomIntFromInterval(21, 25)];
 
-  // r1 = posts[randomIntFromInterval(1, 5)];
-  // r2 = posts[randomIntFromInterval(6, 10)];
-  // r3 = posts[randomIntFromInterval(11, 15)];
-  // r4 = posts[randomIntFromInterval(16, 20)];
-  // r5 = posts[randomIntFromInterval(21, 25)];
+  r1 = posts[randomIntFromInterval(1, 5)];
+  r2 = posts[randomIntFromInterval(6, 10)];
+  r3 = posts[randomIntFromInterval(11, 15)];
+  r4 = posts[randomIntFromInterval(16, 20)];
+  r5 = posts[randomIntFromInterval(21, 25)];
   import Siema from "siema";
   import { onMount } from "svelte";
-  // let r1,r2,r3,r4,r5;
-  // function randomIntFromInterval(min, max) { 
-  //     return Math.floor(Math.random() * (max - min + 1) + min);
-  //   }
-  onMount(() => {
 
-    // r1 = posts[randomIntFromInterval(1, 5)];
-    // r2 = posts[randomIntFromInterval(6, 10)];
-    // r3 = posts[randomIntFromInterval(11, 15)];
-    // r4 = posts[randomIntFromInterval(16, 20)];
-    // r5 = posts[randomIntFromInterval(21, 25)];
+  onMount(() => {
+  //   function randomIntFromInterval(min, max) {
+  //   return Math.floor(Math.random() * (max - min + 1) + min);
+  // }
+  //   r1 = posts[randomIntFromInterval(1, 5)];
+  //   r2 = posts[randomIntFromInterval(6, 10)];
+  //   r3 = posts[randomIntFromInterval(11, 15)];
+  //   r4 = posts[randomIntFromInterval(16, 20)];
+  //   r5 = posts[randomIntFromInterval(21, 25)];
 
     const mySiema = new Siema({
       duration: 0,
@@ -108,11 +107,25 @@
   </form>
 </nav>
 <div class="siema">
+  {#if r1}
   <VideoImg src="{r1}" />
+  {/if}
+  {#if r2}
   <VideoImg src="{r2}" />
+  {/if}
+  {#if r3}
   <VideoImg src="{r3}" />
+  {/if}
+  {#if r4}
   <VideoImg src="{r4}" />
+  {/if}
+  {#if r5}
   <VideoImg src="{r5}" />
+  {/if}
+
+  <!-- <VideoImg src="{r3}" />
+  <VideoImg src="{r4}" />
+  <VideoImg src="{r5}" /> -->
 </div>
 <button class="prev h90 absolute b0 l0"></button>
 <button class="next h90 absolute b0 r0"></button>
