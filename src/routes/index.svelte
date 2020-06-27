@@ -24,6 +24,7 @@
   $: filteredPosts = posts.filter(
     (post) => post.title.rendered.toLowerCase().indexOf(searchTerm) !== -1
   );
+	//const index = Math.floor(array.length * Math.random());
 
   // let randomPost = "";
   let r1, r2, r3, r4, r5 = "";
@@ -36,15 +37,24 @@
   // $: r4 = posts[randomIntFromInterval(16, 20)];
   // $: r5 = posts[randomIntFromInterval(21, 25)];
 
-  r1 = posts[randomIntFromInterval(1, 5)];
-  r2 = posts[randomIntFromInterval(6, 10)];
-  r3 = posts[randomIntFromInterval(11, 15)];
-  r4 = posts[randomIntFromInterval(16, 20)];
-  r5 = posts[randomIntFromInterval(21, 25)];
+  // r1 = posts[randomIntFromInterval(1, 5)];
+  // r2 = posts[randomIntFromInterval(6, 10)];
+  // r3 = posts[randomIntFromInterval(11, 15)];
+  // r4 = posts[randomIntFromInterval(16, 20)];
+  // r5 = posts[randomIntFromInterval(21, 25)];
+  r1 = posts[1];
+  r2 = posts[3];
+  r3 = posts[4];
+  r4 = posts[5];
+  r5 = posts[6];
   import Siema from "siema";
+  // import lozad from 'lozad';
   import { onMount } from "svelte";
 
   onMount(() => {
+//     const observer = lozad('.lazy', {
+// });
+// observer.observe();
   //   function randomIntFromInterval(min, max) {
   //   return Math.floor(Math.random() * (max - min + 1) + min);
   // }
@@ -134,7 +144,7 @@
 <main class="flex wrap p125" id="main">
   {#if filteredPosts && filteredPosts.length > 0} {#each filteredPosts as post}
   <article id="{post.id}" class="flex wrap w25 p125">
-    <a rel="prefetch" href="{post.slug}">
+    <a rell="pprefetch" href="{post.slug}">
       <div>
         {#if post.acf.image}
         <img class="lazy" src="" data-src="{post.acf.image.sizes.thumbnail}" srcset="" data-srcset="{post.acf.image.sizes.thumbnail}" alt="md" />
@@ -159,4 +169,3 @@
   </article> -->
   {/each} {/if}
 </main>
-<h4 class="flex jc-center w100"><a href="index1">index1</a></h4>
