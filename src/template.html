@@ -16,16 +16,16 @@
     <link rel="manifest" href="manifest.json" crossorigin="use-credentials" />
     <!-- <link rel="icon" type="image/png" href="favicon.png" /> -->
     <title>
-      MD
+      Maxime Delvaux
     </title>
-    <meta name="description" content="desc" />
-    <meta name="og:title" content="MD" />
-    <meta name="og:description" content="d" />
+    <meta name="description" content="" />
+    <meta name="og:title" content="Maxime Delvaux" />
+    <meta name="og:description" content="" />
     <meta name="og:type" content="website" />
     <meta name="og:image" content="favicon.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="MD" />
-    <meta name="twitter:description" content="d" />
+    <meta name="twitter:title" content="Maxime Delvaux" />
+    <meta name="twitter:description" content="" />
     <meta name="twitter:image" content="favicon.png" />
     <style>
       @font-face {
@@ -79,7 +79,6 @@
       a:hover {
         text-decoration: underline;
         color: blue;
-        /* color: rgb(0, 187, 247); */
       }
 
       ul {
@@ -91,9 +90,9 @@
         display: block;
       }
 
-      p a {
+      /* p a {
         text-decoration: underline;
-      }
+      } */
 
       .bg-white {
         background-color: white;
@@ -109,6 +108,10 @@
         cursor: pointer;
         background-color: transparent;
         width: auto;
+      }
+      button {
+        text-align: left;
+        padding: 0.25em;
       }
 
       form {
@@ -144,13 +147,13 @@
         transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1);
       }
 
-      .lazy {
+      /* .lazy {
         opacity: 0;
       }
 
       .loaded {
         opacity: 1;
-      }
+      } */
 
       h1,
       h2,
@@ -185,14 +188,10 @@
         left: 0;
         right: 0;
         width: 100%;
-        /* display: flex;
-    justify-content: center;
-    align-items: center; */
         z-index: 10;
         background-color: black;
         color: white;
-        cursor: pointer;
-        padding: 0.5em;
+        /* padding: 0.5em; */
       }
 
       .modal a {
@@ -282,6 +281,9 @@
       .center {
         text-align: center;
       }
+      .right {
+        text-align: right;
+      }
 
       .m1 {
         margin: 1em;
@@ -345,8 +347,20 @@
           display: none;
         }
       }
+      @media only screen and (max-width: 800px) {
+        .max {
+          top: auto;
+          bottom: 0;
+          right: auto;
+          left: 0;
+        }
+        aside {
+          left: auto;
+          right: 0;
+        }
+      }
 
-      @media only screen and (max-width: 600px) {
+      @media only screen and (max-width: 500px) {
         body {
           font-size: 22px;
         }
@@ -363,22 +377,9 @@
         min-height: 90vh;
         min-height: -webkit-fill-available;
       } */
-
-        .max {
-          top: auto;
-          bottom: 0;
-          right: auto;
-          left: 0;
-        }
-
-        nav {
-          /* top: auto;
-        bottom: 0;
-        left: auto;
-        right: 0; */
+        aside {
           display: none;
         }
-
         /* .hyphens {
     hyphens: none;
   } */

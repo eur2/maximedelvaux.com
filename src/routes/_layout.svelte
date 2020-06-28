@@ -1,25 +1,34 @@
-<!-- <script context="module">
-  export function preload({ params, query }) {
-    return this.fetch(`https://pl.maop.fr/wp-json/wp/v2/pages`)
-      .then((r) => r.json())
-      .then((posts) => {
-        return { posts };
-      });
+<script context="module">
+  export async function preload() {
+    const req = await this.fetch(
+      "https://api.maximedelvaux.com/wp-json/wp/v2/pages?slug=about"
+    ).then((r) => r.json());
+    return { page: req[0] };
   }
-</script> -->
-
-<script>
-  // import Header from "../components/Header.svelte";
-  // import Subscribe from "../components/Subscribe.svelte";
-  // export let posts;
 </script>
 
-<!-- <Header>
-  {#each posts as post} {#if post.slug === 'header'} {@html
-  post.content.rendered} {/if} {/each}
-</Header> -->
+<script>
+  export let page;
+  export let segment;
+  let visible;
+  function handleToggle() {
+    visible = !visible;
+  }
+</script>
+<header class="fixed t0 r0 z10 max {segment === undefined ? 'block' : 'none'}">
+  <h1>
+    <button on:click="{handleToggle}">
+      Maxime Delvaux
+    </button>
+  </h1>
+
+  {#if visible}
+  <div class="modal p25">
+    <p class="right">
+      <button on:click="{handleToggle}">×</button>
+    </p>
+    {@html page.content.rendered}
+  </div>
+  {/if}
+</header>
 <slot></slot>
-<!-- <Subscribe>
-  {#each posts as post} {#if post.slug === 'subscribe'} {@html
-  post.content.rendered} {/if} {/each}
-</Subscribe> -->

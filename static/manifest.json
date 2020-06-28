@@ -1,9 +1,9 @@
 {
-  "background_color": "#ffffff",
-  "theme_color": "#333333",
-  "name": "Plan Libre",
-  "short_name": "PL",
-  "display": "minimal-ui",
+  "background_color": "#000",
+  "theme_color": "#000",
+  "name": "Maxime Delvaux",
+  "short_name": "MD",
+  "display": "standalone",
   "start_url": "/",
   "icons": [
     {
