@@ -113,7 +113,6 @@
 {/if}
 <main>
   <div class="siema">
-    <!-- {@html post.content.rendered} -->
     {@html lazyContent}
   </div>
   <button class="prev fixed b0 l0"></button>
