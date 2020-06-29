@@ -5,7 +5,7 @@
 <div class="bg-white z2">
   <header class="absolute z10">
     <h2>
-      <a class="block p25" href="{src.slug}">
+      <a rel="prefetch" class="block p25" href="{src.slug}">
         {src.title.rendered}
       </a>
     </h2>
@@ -13,9 +13,8 @@
 
   {#if src.acf.image === false}
   <figure>
-    <video autoplay loop playsinline>
-      <source loading="lazy" src="{src.acf.video1080p.url}" type="video/mp4" />
-      Sorry, your browser doesn't support embedded videos.
+    <video class="lazy" autoplay loop playsinline>
+      <source data-src="{src.acf.video1080p.url}" type="video/mp4" />
     </video>
   </figure>
   {:else}
@@ -25,8 +24,8 @@
       src=""
       data-src="{src.acf.image.sizes.large}"
       srcset=""
-      data-srcset="{src.acf.image.sizes.large}"
-      alt=""
+      data-srcset="{src.acf.image.sizes.thumbnail} 400w, {src.acf.image.sizes.medium} 800w, {src.acf.image.sizes.large} 1600w"
+      alt="Maxime Delvaux {src.title.rendered}"
     />
   </figure>
   {/if}

@@ -13,65 +13,29 @@
 
 <script>
   export let posts;
-  // import Front from "../components/Front.svelte";
-  // import Post from "../components/Post.svelte";
-  import Video from "../components/Video.svelte";
   import Slide from "../components/Slide.svelte";
-	//const index = Math.floor(array.length * Math.random());
-
-  // let randomPost = "";
-  // let r1, r2, r3, r4, r5 = "";
-  // function randomIntFromInterval(min, max) {
-  //   return Math.floor(Math.random() * (max - min + 1) + min);
-  // }
-  // $: r1 = posts[randomIntFromInterval(1, 5)];
-  // $: r2 = posts[randomIntFromInterval(6, 10)];
-  // $: r3 = posts[randomIntFromInterval(11, 15)];
-  // $: r4 = posts[randomIntFromInterval(16, 20)];
-  // $: r5 = posts[randomIntFromInterval(21, 25)];
-
-  // r1 = posts[randomIntFromInterval(1, 5)];
-  // r2 = posts[randomIntFromInterval(6, 10)];
-  // r3 = posts[randomIntFromInterval(11, 15)];
-  // r4 = posts[randomIntFromInterval(16, 20)];
-  // r5 = posts[randomIntFromInterval(21, 25)];
-  // let r1 = posts[Math.floor(Math.random() * (5 - 1 + 1) + 1)];
-  let r1 = posts[Math.floor(Math.random() * (10 - 6 + 1) + 6)];
-  let r2 = posts[Math.floor(Math.random() * (15 - 11 + 1) + 11)];
-  let r3 = posts[Math.floor(Math.random() * (20 - 16 + 1) + 16)];
-  let r4 = posts[Math.floor(Math.random() * (25 - 21 + 1) + 21)];
-
-  // let r3 = posts[Math.floor(Math.random() * (15 - 11 + 1) + 11)];
-  // let r4 = posts[Math.floor(Math.random() * (20 - 16 + 1) + 16)];
-  // let r5 = posts[Math.floor(Math.random() * (25 - 21 + 1) + 21)];
-  // r3 = posts[4];
-  // r4 = posts[5];
-  // r5 = posts[6];
   import Siema from "siema";
-  import lozad from 'lozad';
+  // import lozad from 'lozad';
+  import { onMount } from "svelte";
+
+  let r1 = posts[Math.floor(Math.random() * (8 - 4 + 1) + 4)];
+  let r2 = posts[Math.floor(Math.random() * (13 - 9 + 1) + 9)];
+  let r3 = posts[Math.floor(Math.random() * (18 - 14 + 1) + 14)];
+  let r4 = posts[Math.floor(Math.random() * (23 - 19 + 1) + 19)];
+  let r5 = posts[Math.floor(Math.random() * (28 - 24 + 1) + 24)];
+  let r6 = posts[Math.floor(Math.random() * (33 - 29 + 1) + 29)];
+  let r7 = posts[Math.floor(Math.random() * (38 - 34 + 1) + 34)];
+  let r8 = posts[Math.floor(Math.random() * (43 - 39 + 1) + 39)];
 
   let searchTerm = "";
   $: filteredPosts = posts.filter(
     (post) => post.title.rendered.toLowerCase().indexOf(searchTerm) !== -1
   );
 
-  import { onMount } from "svelte";
-
   onMount(() => {
-   
-    const observer = lozad('.lazy', {
-});
-observer.observe();
-
-  //   function randomIntFromInterval(min, max) {
-  //   return Math.floor(Math.random() * (max - min + 1) + min);
-  // }
-  //   r1 = posts[randomIntFromInterval(1, 5)];
-  //   r2 = posts[randomIntFromInterval(6, 10)];
-  //   r3 = posts[randomIntFromInterval(11, 15)];
-  //   r4 = posts[randomIntFromInterval(16, 20)];
-  //   r5 = posts[randomIntFromInterval(21, 25)];
-
+//     const observer = lozad('.lazy', {
+// });
+// observer.observe();
     const mySiema = new Siema({
       duration: 0,
       draggable: true,
@@ -79,33 +43,57 @@ observer.observe();
     });
     const prev = document.querySelector(".prev");
     const next = document.querySelector(".next");
-
     prev.addEventListener("click", () => mySiema.prev());
     next.addEventListener("click", () => mySiema.next());
     
+    var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+    if (typeof IntersectionObserver !== "undefined") {
+      let lazyImageObserver = new IntersectionObserver(function (
+        entries,
+        observer
+      ) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            let lazyImage = entry.target;
+            lazyImage.src = lazyImage.dataset.src;
+            lazyImage.srcset = lazyImage.dataset.srcset;
+            lazyImage.classList.remove("lazy");
+            lazyImage.classList.add("loaded");
+            lazyImageObserver.unobserve(lazyImage);
+          }
+        });
+      });
+      lazyImages.forEach(function (lazyImage) {
+        lazyImageObserver.observe(lazyImage);
+      });
+    }
 
-    // var lazyImages = [].slice.call(document.querySelectorAll(".lazy"));
-    // if (typeof IntersectionObserver !== "undefined") {
-    //   let lazyImageObserver = new IntersectionObserver(function (
-    //     entries,
-    //     observer
-    //   ) {
-    //     entries.forEach(function (entry) {
-    //       if (entry.isIntersecting) {
-    //         let lazyImage = entry.target;
-    //         lazyImage.src = lazyImage.dataset.src;
-    //         lazyImage.srcset = lazyImage.dataset.srcset;
-    //         lazyImage.classList.remove("lazy");
-    //         lazyImage.classList.add("loaded");
-    //         lazyImageObserver.unobserve(lazyImage);
-    //       }
-    //     });
-    //   });
-    //   lazyImages.forEach(function (lazyImage) {
-    //     lazyImageObserver.observe(lazyImage);
-    //   });
-    // }
+    var lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
+    if (typeof IntersectionObserver !== "undefined") {
+      let lazyVideoObserver = new IntersectionObserver(function (
+        entries,
+        observer
+      ) {
+        entries.forEach(function(video) {
+        if (video.isIntersecting) {
+          for (var source in video.target.children) {
+            var videoSource = video.target.children[source];
+            if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
+              videoSource.src = videoSource.dataset.src;
+            }
+          }
 
+          video.target.load();
+          video.target.classList.remove("lazy");
+          lazyVideoObserver.unobserve(video.target);
+        }
+      });
+    });
+
+    lazyVideos.forEach(function(lazyVideo) {
+      lazyVideoObserver.observe(lazyVideo);
+    });
+  }
 
   });
 </script>
@@ -115,14 +103,20 @@ observer.observe();
     <input type="text" name="search" aria-label="Search" placeholder="Search" bind:value="{searchTerm}" />
   </form>
 </aside>
+<div>
 <div class="siema">
   <Slide src="{r1}" />
   <Slide src="{r2}" />
   <Slide src="{r3}" />
   <Slide src="{r4}" />
+  <Slide src="{r5}" />
+  <Slide src="{r6}" />
+  <Slide src="{r7}" />
+  <Slide src="{r8}" />
 </div>
 <button class="prev h90 absolute b0 l0"></button>
 <button class="next h90 absolute b0 r0"></button>
+</div>
 <main class="flex wrap p125" id="main">
   {#if filteredPosts && filteredPosts.length > 0} 
   <!-- {#each filteredPosts as post} -->
@@ -131,13 +125,12 @@ observer.observe();
     <a href="{post.slug}">
       <div>
         {#if post.acf.image}
-        <img class="lazy" src="" data-src="{post.acf.image.sizes.medium}" srcset="" data-srcset="{post.acf.image.sizes.medium}" alt="md" />
-        <!-- <img class="lazy" src="" data-src="{post.acf.image.sizes.thumbnail}" srcset="" data-srcset="{post.acf.image.sizes.thumbnail}" alt="md" /> -->
-        <!-- <img class="lazy" src="{post.acf.image.sizes.thumbnail}" srcset="{post.acf.image.sizes.thumbnail}" alt="md" /> -->
+        <img class="lazy" src="" data-src="{post.acf.image.sizes.medium}" srcset="" data-srcset="{post.acf.image.sizes.thumbnail} 400w, {post.acf.image.sizes.medium} 800w" alt="Maxime Delvaux {post.title.rendered}" width="800" height="640"
+        />
+
         {/if} {#if post.acf.video}
         <video class="lazy" autoplay loop playsinline>
           <source data-src="{post.acf.video.url}" type="video/mp4" />
-          Sorry, your browser doesn't support embedded videos.
         </video>
         {/if}
         <header>
