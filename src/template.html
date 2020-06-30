@@ -1,363 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <meta name="theme-color" content="black" />
-    <link
-      rel="preload"
-      href="NSPOT-Bold.woff2"
-      as="font"
-      crossorigin="anonymous"
-    />
-    %sapper.base%
 
-    <!-- <link rel="stylesheet" href="global.css" /> -->
-    <link rel="manifest" href="manifest.json" crossorigin="use-credentials" />
-    <!-- <link rel="icon" type="image/png" href="favicon.png" /> -->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="theme-color" content="black" />
+  <link rel="preload" href="NSPOT-Bold.woff2" as="font" crossorigin="anonymous" />
+  %sapper.base%
 
-    <style>
-      @font-face {
-        font-family: "NSPOT";
-        src: url("NSPOT-Bold.woff") format("woff");
-        src: url("NSPOT-Bold.woff2") format("woff2");
-        font-weight: bold;
-        font-style: normal;
-        font-display: swap;
-      }
+  <!-- <link rel="stylesheet" href="global.css" /> -->
+  <link rel="manifest" href="manifest.json" crossorigin="use-credentials" />
+  <!-- <link rel="icon" type="image/png" href="favicon.png" /> -->
 
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+  <style>
+    @font-face {
+      font-family: "NSPOT";
+      src: url("NSPOT-Bold.woff") format("woff");
+      src: url("NSPOT-Bold.woff2") format("woff2");
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
+    }
 
-      html {
-        text-size-adjust: 100%;
-        -webkit-tap-highlight-color: transparent;
-        background-color: white;
-        color: black;
-        /* height: -webkit-fill-available; */
-      }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      body {
-        font-family: "NSPOT", "Helvetica Neue", sans-serif;
-        font-weight: bold;
-        font-size: 32px;
-        line-height: 1.1;
-        letter-spacing: 0.04em;
-        /* word-spacing: -0.02em; */
-        -moz-osx-font-smoothing: grayscale;
-        -webkit-font-smoothing: antialiased;
-        /* min-height: 100vh;
+    html {
+      text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+      background-color: white;
+      color: black;
+      /* height: -webkit-fill-available; */
+    }
+
+    body {
+      font-family: "NSPOT", "Helvetica Neue", sans-serif;
+      font-weight: bold;
+      font-size: 32px;
+      line-height: 1.1;
+      letter-spacing: 0.04em;
+      /* word-spacing: -0.02em; */
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      /* min-height: 100vh;
         min-height: -webkit-fill-available; */
-      }
+    }
 
-      /* ::selection {
+    /* ::selection {
         text-shadow: none;
         background: rgb(0, 187, 247);
       } */
 
-      a,
-      a:active {
-        color: black;
-        text-decoration: none;
-      }
+    a,
+    a:active {
+      color: black;
+      text-decoration: none;
+    }
 
-      button:hover,
-      a:hover {
-        text-decoration: underline;
-        color: blue;
-      }
+    button:hover,
+    a:hover {
+      text-decoration: underline;
+      color: blue;
+    }
 
-      ul {
-        padding: 0;
-        list-style-type: none;
-      }
+    a.hovernone:hover {
+      text-decoration: none;
+      color: transparent;
+    }
 
-      li {
-        display: block;
-      }
+    ul {
+      padding: 0;
+      list-style-type: none;
+    }
 
-      /* p a {
+    li {
+      display: block;
+    }
+
+    /* p a {
         text-decoration: underline;
       } */
 
-      .bg-white {
-        background-color: white;
-      }
+    .bg-white {
+      background-color: white;
+    }
 
-      button,
-      input {
-        font: inherit;
-        color: inherit;
-        letter-spacing: inherit;
-        outline: 0;
-        border: 0;
-        cursor: pointer;
-        background-color: transparent;
-        width: auto;
-      }
-      button {
-        text-align: left;
-        padding: 0.25em;
-      }
+    button,
+    input {
+      font: inherit;
+      color: inherit;
+      letter-spacing: inherit;
+      outline: 0;
+      border: 0;
+      cursor: pointer;
+      background-color: transparent;
+      width: auto;
+    }
 
-      form {
-        padding-left: 0.25em;
-        padding-right: 0.25em;
-        width: 100px;
-      }
+    button {
+      text-align: left;
+      padding: 0.25em;
+    }
 
-      input:focus {
-        color: blue;
-      }
+    form {
+      padding-left: 0.25em;
+      padding-right: 0.25em;
+      width: 100px;
+    }
 
-      .pointer {
-        cursor: pointer;
-      }
+    input:focus {
+      color: blue;
+    }
 
-      figure {
-        display: flex;
-        height: 100vh;
-        /* padding: 0.25em; */
-      }
+    .pointer {
+      cursor: pointer;
+    }
 
-      figure.h90 {
-        height: 90vh;
-      }
+    figure {
+      display: flex;
+      height: 100vh;
+      /* padding: 0.25em; */
+    }
 
-      video,
-      img {
-        display: block;
-        width: 100%;
-        height: auto;
-        object-fit: contain !important;
-        transition: opacity 0.2s;
-      }
+    figure.h90 {
+      height: 90vh;
+    }
 
-      .lazy {
-        opacity: 0;
-      }
+    video,
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain !important;
+      transition: opacity 0.2s;
+    }
 
-      .loaded {
-        opacity: 1;
-      }
+    .lazy {
+      opacity: 0;
+    }
 
-      h1,
-      h2,
-      h3,
-      h4,
-      p {
-        font-size: 1em;
-        font-weight: bold;
-      }
+    .loaded {
+      opacity: 1;
+    }
 
-      h4 {
-        font-size: 0.5em;
-        hyphens: auto;
-      }
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
+      font-size: 1em;
+      font-weight: bold;
+    }
 
-      .next,
-      .prev {
-        height: 100%;
-        width: 50%;
-      }
+    h4 {
+      font-size: 0.5em;
+      hyphens: auto;
+    }
 
-      .next {
-        cursor: e-resize;
-      }
+    .next,
+    .prev {
+      height: 100%;
+      width: 50%;
+    }
 
-      .prev {
-        cursor: w-resize;
-      }
+    .w33 {
+      width: 33% !important;
+    }
 
-      .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        z-index: 10;
-        background-color: black;
-        color: white;
-        /* padding: 0.5em; */
-      }
+    .next {
+      cursor: e-resize;
+    }
 
-      .modal a {
-        color: blue;
-      }
+    .prev {
+      cursor: w-resize;
+    }
 
-      .none {
-        display: none;
-      }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 10;
+      background-color: black;
+      color: white;
+      /* padding: 0.5em; */
+    }
 
-      .block {
-        display: block;
-      }
+    .modal a {
+      color: blue;
+    }
 
-      .non {
-        display: none;
-      }
+    .none {
+      display: none;
+    }
 
-      .fixed {
-        position: fixed;
-      }
+    .block {
+      display: block;
+    }
 
-      .relative {
-        position: relative;
-      }
+    .non {
+      display: none;
+    }
 
-      .sticky {
-        position: sticky;
-      }
+    .fixed {
+      position: fixed;
+    }
 
-      .absolute {
-        position: absolute;
-      }
+    .relative {
+      position: relative;
+    }
 
-      .l0 {
-        left: 0;
-      }
+    .sticky {
+      position: sticky;
+    }
 
-      .t0 {
-        top: 0;
-      }
+    .absolute {
+      position: absolute;
+    }
 
-      .r0 {
-        right: 0;
-      }
+    .l0 {
+      left: 0;
+    }
 
-      .b0 {
-        bottom: 0;
-      }
+    .t0 {
+      top: 0;
+    }
 
-      .h100vh {
-        height: 100vh;
-      }
+    .r0 {
+      right: 0;
+    }
 
-      .h90vh {
-        height: 90vh;
-      }
+    .b0 {
+      bottom: 0;
+    }
 
-      .h90 {
-        height: 90%;
-      }
+    .h100vh {
+      height: 100vh;
+    }
 
-      .w100 {
-        width: 100%;
-      }
+    .h90vh {
+      height: 90vh;
+    }
 
-      .w25 {
-        width: 25%;
-      }
+    .h90 {
+      height: 90%;
+    }
 
-      .z-2 {
-        z-index: -2;
-      }
+    .w100 {
+      width: 100%;
+    }
 
-      .z-1 {
-        z-index: -1;
-      }
+    .w25 {
+      width: 25%;
+    }
 
-      .z2 {
-        z-index: 2;
-      }
+    .z-2 {
+      z-index: -2;
+    }
 
-      .z10 {
-        z-index: 10;
-      }
+    .z-1 {
+      z-index: -1;
+    }
 
-      .center {
-        text-align: center;
-      }
-      .right {
-        text-align: right;
-      }
+    .z2 {
+      z-index: 2;
+    }
 
-      .m1 {
-        margin: 1em;
-      }
+    .z10 {
+      z-index: 10;
+    }
 
-      .p1 {
-        padding: 1em;
-      }
+    .center {
+      text-align: center;
+    }
 
-      .p125 {
-        padding: 0.125em;
-      }
+    .right {
+      text-align: right;
+    }
 
-      .p25 {
-        padding: 0.25em;
-      }
-      /* .m25 {
+    .m1 {
+      margin: 1em;
+    }
+
+    .p1 {
+      padding: 1em;
+    }
+
+    .p125 {
+      padding: 0.125em;
+    }
+
+    .p25 {
+      padding: 0.25em;
+    }
+
+    /* .m25 {
         margin: 0.25em;
       } */
 
-      .p5 {
-        padding: 0.5em;
-      }
+    .p5 {
+      padding: 0.5em;
+    }
 
-      .flex {
-        display: flex;
-      }
+    .flex {
+      display: flex;
+    }
 
-      .wrap {
-        flex-wrap: wrap;
-      }
+    .wrap {
+      flex-wrap: wrap;
+    }
 
-      .column {
-        flex-direction: column;
-      }
+    .column {
+      flex-direction: column;
+    }
 
-      .jc-center {
-        justify-content: center;
-      }
+    .jc-center {
+      justify-content: center;
+    }
 
-      .jc-sb {
-        justify-content: space-between;
-      }
+    .jc-sb {
+      justify-content: space-between;
+    }
 
-      .ai-center {
-        align-items: center;
-      }
+    .ai-center {
+      align-items: center;
+    }
 
-      /* .hyphens {
+    /* .hyphens {
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
 } */
-      @media only screen and (max-width: 800px) {
-        .w25 {
-          width: 50%;
-        }
-
-        .next,
-        .prev {
-          display: none;
-        }
-      }
-      @media only screen and (max-width: 800px) {
-        .max {
-          top: auto;
-          bottom: 0;
-          right: auto;
-          left: 0;
-        }
-        aside {
-          left: auto;
-          right: 0;
-        }
+    @media only screen and (max-width: 800px) {
+      .w25 {
+        width: 50%;
       }
 
-      @media only screen and (max-width: 500px) {
-        body {
-          font-size: 22px;
-        }
-        h4 {
-          font-size: 12px;
-        }
-        /* figure {
+      .next,
+      .prev {
+        display: none;
+      }
+    }
+
+    @media only screen and (max-width: 800px) {
+      .max {
+        top: auto;
+        bottom: 0;
+        right: auto;
+        left: 0;
+      }
+
+      aside {
+        left: auto;
+        right: 0;
+      }
+    }
+
+    @media only screen and (max-width: 500px) {
+      body {
+        font-size: 22px;
+      }
+
+      h4 {
+        font-size: 12px;
+      }
+
+      /* figure {
         display: flex;
         height: 100vh;
         min-height: 100vh;
@@ -370,51 +382,44 @@
         min-height: 90vh;
         min-height: -webkit-fill-available;
       } */
-        aside {
-          display: none;
-        }
-        /* .hyphens {
+      aside {
+        display: none;
+      }
+
+      /* .hyphens {
     hyphens: none;
   } */
-      }
-    </style>
-    <!-- Sapper generates a <style> tag containing critical CSS
+    }
+  </style>
+  <!-- Sapper generates a <style> tag containing critical CSS
 	     for the current page. CSS for the rest of the app is
 	     lazily loaded when it precaches secondary pages -->
-    %sapper.styles%
+  %sapper.styles%
 
-    <title>Maxime Delvaux</title>
-    <meta
-      name="description"
-      content="Maxime Delvaux is a Belgian architecture photographer based in Brussels."
-    />
-    <meta name="og:title" content="Maxime Delvaux" />
-    <meta
-      name="og:description"
-      content="Maxime Delvaux is a Belgian architecture photographer based in Brussels."
-    />
-    <meta name="og:type" content="website" />
-    <meta name="og:image" content="favicon.png" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Maxime Delvaux" />
-    <meta
-      name="twitter:description"
-      content="Maxime Delvaux is a Belgian architecture photographer based in Brussels."
-    />
-    <meta name="twitter:image" content="favicon.png" />
-    <!-- This contains the contents of the <svelte:head> component, if
+  <title>Maxime Delvaux</title>
+  <meta name="description" content="Maxime Delvaux is a Belgian architecture photographer based in Brussels." />
+  <meta name="og:title" content="Maxime Delvaux" />
+  <meta name="og:description" content="Maxime Delvaux is a Belgian architecture photographer based in Brussels." />
+  <meta name="og:type" content="website" />
+  <meta name="og:image" content="favicon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Maxime Delvaux" />
+  <meta name="twitter:description" content="Maxime Delvaux is a Belgian architecture photographer based in Brussels." />
+  <meta name="twitter:image" content="favicon.png" />
+  <!-- This contains the contents of the <svelte:head> component, if
 	     the current page has one -->
-    %sapper.head%
-  </head>
+  %sapper.head%
+</head>
 
-  <body>
-    <!-- The application will be rendered inside this element,
+<body>
+  <!-- The application will be rendered inside this element,
 	     because `src/client.js` references it -->
-    <div id="sapper">%sapper.html%</div>
+  <div id="sapper">%sapper.html%</div>
 
-    <!-- Sapper creates a <script> tag containing `src/client.js`
+  <!-- Sapper creates a <script> tag containing `src/client.js`
 	     and anything else it needs to hydrate the app and
 	     initialise the router -->
-    %sapper.scripts%
-  </body>
+  %sapper.scripts%
+</body>
+
 </html>

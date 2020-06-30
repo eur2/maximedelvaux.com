@@ -94,10 +94,10 @@
 </svelte:head>
 <header class="fixed t0 l0 r0 z10">
   <div class="flex jc-sb w100">
-    <h1>
-      <button on:click="{handleToggle}">
-        {post.title.rendered}
-      </button>
+    <h1 class="p25">
+      <!-- <button on:click="{handleToggle}"> -->
+      {post.title.rendered}
+      <!-- </button> -->
     </h1>
     <a rel="prefetch" class="block p25" href="#{post.id}">×</a>
   </div>

@@ -29,4 +29,6 @@
     />
   </figure>
   {/if}
+  <a rel="prefetch" class="hovernone absolute t0 w100 h100vh " href="{src.slug}">&nbsp;
+  </a>
 </div>

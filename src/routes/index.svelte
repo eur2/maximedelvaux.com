@@ -1,5 +1,4 @@
 <script context="module">
-  //https://pl.maop.fr/wp-json/wp/v2/posts?custom_per_page=200
   export function preload({ params, query }) {
     return this.fetch(
       `https://api.maximedelvaux.com/wp-json/wp/v2/posts?_embed&per_page=100`
@@ -15,7 +14,6 @@
   export let posts;
   import Slide from "../components/Slide.svelte";
   import Siema from "siema";
-  // import lozad from 'lozad';
   import { onMount } from "svelte";
 
   let r1 = posts[Math.floor(Math.random() * (8 - 4 + 1) + 4)];
@@ -33,9 +31,6 @@
   );
 
   onMount(() => {
-//     const observer = lozad('.lazy', {
-// });
-// observer.observe();
     const mySiema = new Siema({
       duration: 0,
       draggable: true,
@@ -45,7 +40,7 @@
     const next = document.querySelector(".next");
     prev.addEventListener("click", () => mySiema.prev());
     next.addEventListener("click", () => mySiema.next());
-    
+
     var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
     if (typeof IntersectionObserver !== "undefined") {
       let lazyImageObserver = new IntersectionObserver(function (
@@ -74,26 +69,26 @@
         entries,
         observer
       ) {
-        entries.forEach(function(video) {
-        if (video.isIntersecting) {
-          for (var source in video.target.children) {
-            var videoSource = video.target.children[source];
-            if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
-              videoSource.src = videoSource.dataset.src;
+        entries.forEach(function (video) {
+          if (video.isIntersecting) {
+            for (var source in video.target.children) {
+              var videoSource = video.target.children[source];
+              if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
+                videoSource.src = videoSource.dataset.src;
+              }
             }
+
+            video.target.load();
+            video.target.classList.remove("lazy");
+            lazyVideoObserver.unobserve(video.target);
           }
-
-          video.target.load();
-          video.target.classList.remove("lazy");
-          lazyVideoObserver.unobserve(video.target);
-        }
+        });
       });
-    });
 
-    lazyVideos.forEach(function(lazyVideo) {
-      lazyVideoObserver.observe(lazyVideo);
-    });
-  }
+      lazyVideos.forEach(function (lazyVideo) {
+        lazyVideoObserver.observe(lazyVideo);
+      });
+    }
 
   });
 </script>
@@ -104,18 +99,18 @@
   </form>
 </aside>
 <div>
-<div class="siema">
-  <Slide src="{r1}" />
-  <Slide src="{r2}" />
-  <Slide src="{r3}" />
-  <Slide src="{r4}" />
-  <Slide src="{r5}" />
-  <Slide src="{r6}" />
-  <Slide src="{r7}" />
-  <Slide src="{r8}" />
-</div>
-<button class="prev h90 absolute b0 l0"></button>
-<button class="next h90 absolute b0 r0"></button>
+  <div class="siema">
+    <Slide src="{r1}" />
+    <Slide src="{r2}" />
+    <Slide src="{r3}" />
+    <Slide src="{r4}" />
+    <Slide src="{r5}" />
+    <Slide src="{r6}" />
+    <Slide src="{r7}" />
+    <Slide src="{r8}" />
+  </div>
+  <button class="prev w33 h90 absolute b0 l0"></button>
+  <button class="next w33 h90 absolute b0 r0"></button>
 </div>
 <main class="flex wrap p125" id="main">
   {#if filteredPosts && filteredPosts.length > 0} 
