@@ -116,13 +116,12 @@
   {#if filteredPosts && filteredPosts.length > 0} 
   <!-- {#each filteredPosts as post} -->
   {#each filteredPosts || [] as post (post.id)}
-  <article id="{post.id}" class="w25 p125">
+  <article id="{post.id}" class="f25 p125">
     <a href="{post.slug}">
       <div>
         {#if post.acf.image}
         <img class="lazy" src="" data-src="{post.acf.image.sizes.medium}" srcset="" data-srcset="{post.acf.image.sizes.thumbnail} 400w, {post.acf.image.sizes.medium} 800w" alt="Maxime Delvaux {post.title.rendered}" width="800" height="640"
         />
-
         {/if} {#if post.acf.video}
         <video class="lazy" autoplay loop playsinline>
           <source data-src="{post.acf.video.url}" type="video/mp4" />

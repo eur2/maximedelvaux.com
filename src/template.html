@@ -23,7 +23,7 @@
     }
 
     * {
-      box-sizing: border-box;
+      /* box-sizing: content-box; */
       margin: 0;
       padding: 0;
     }
@@ -40,7 +40,7 @@
       font-family: "NSPOT", "Helvetica Neue", sans-serif;
       font-weight: bold;
       font-size: 32px;
-      line-height: 1.1;
+      line-height: 1;
       letter-spacing: 0.04em;
       /* word-spacing: -0.02em; */
       -moz-osx-font-smoothing: grayscale;
@@ -157,6 +157,8 @@
 
     h4 {
       font-size: 0.5em;
+      -webkit-hyphens: auto;
+      -ms-hyphens: auto;
       hyphens: auto;
       overflow-wrap: break-word;
       word-wrap: break-word;
@@ -185,7 +187,7 @@
       top: 0;
       left: 0;
       right: 0;
-      width: 100%;
+      /* width: 100%; */
       z-index: 10;
       background-color: black;
       color: white;
@@ -221,6 +223,11 @@
 
     .absolute {
       position: absolute;
+    }
+
+    .front-header {
+      position: absolute;
+      max-width: 800px;
     }
 
     .l0 {
@@ -307,6 +314,10 @@
       display: flex;
     }
 
+    .f25 {
+      flex: 0 0 calc(25% - 0.25em)
+    }
+
     .wrap {
       flex-wrap: wrap;
     }
@@ -333,8 +344,12 @@
   hyphens: auto;
 } */
     @media only screen and (max-width: 800px) {
-      .w25 {
+
+      /* .w25 {
         width: 50%;
+      } */
+      .f25 {
+        flex: 0 0 calc(50% - 0.25em)
       }
 
       .next,
@@ -357,13 +372,43 @@
       }
     }
 
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 600px) {
       body {
-        font-size: 22px;
+        font-size: 24px;
       }
 
       h4 {
         font-size: 12px;
+      }
+    }
+
+    @media only screen and (max-width: 500px) {
+      .front-header {
+        position: relative;
+        max-width: fit-content;
+        /* -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto; */
+      }
+
+      .front-fig img,
+      .front-fig video {
+        height: calc(100vh - 76px)
+      }
+
+      aside {
+        display: none;
+      }
+    }
+
+    @media only screen and (max-width: 340px) {
+      body {
+        font-size: 20px;
+      }
+
+      .front-fig img,
+      .front-fig video {
+        height: calc(100vh - 64px)
       }
     }
   </style>

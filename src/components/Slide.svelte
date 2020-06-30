@@ -3,7 +3,7 @@
 </script>
 
 <div class="bg-white z2">
-  <header class="absolute z10">
+  <header class="z10 front-header">
     <h2>
       <a rel="prefetch" class="block p25" href="{src.slug}">
         {src.title.rendered}
@@ -12,13 +12,13 @@
   </header>
 
   {#if src.acf.image === false}
-  <figure>
+  <figure class="front-fig">
     <video class="lazy" autoplay loop playsinline>
       <source data-src="{src.acf.video1080p.url}" type="video/mp4" />
     </video>
   </figure>
   {:else}
-  <figure>
+  <figure class="front-fig">
     <img
       class="lazy"
       src=""
