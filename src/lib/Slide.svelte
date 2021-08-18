@@ -5,7 +5,7 @@
 <div class="bg-white z2">
 	<header class="z10 front-header">
 		<h2>
-			<a sveltekit:prefetch class="block p25" href={src.slug}>
+			<a class="block p25" href={src.slug}>
 				{src.title.rendered}
 			</a>
 		</h2>
@@ -31,5 +31,5 @@
 			/>
 		</figure>
 	{/if}
-	<a rel="prefetch" class="hovernone absolute t0 w100 h100vh " href={src.slug}>&nbsp; </a>
+	<a class="hovernone absolute t0 w100 h100vh " href={src.slug}>&nbsp; </a>
 </div>

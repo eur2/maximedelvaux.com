@@ -22,7 +22,7 @@
 <script>
 	import { getStores, navigating, page, session } from '$app/stores';
 
-	// import '../app.css';
+	import '../app.css';
 	export let post;
 	// export let segment;
 	let visible;
