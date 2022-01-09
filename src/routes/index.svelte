@@ -14,6 +14,7 @@
 
 <script>
 	export let posts;
+	console.log(posts);
 	import Slide from '../lib/Slide.svelte';
 	import Siema from 'siema';
 	import { onMount } from 'svelte';
@@ -129,8 +130,8 @@
 								data-srcset="{post.acf.image.sizes.thumbnail} 400w, {post.acf.image.sizes
 									.medium} 800w"
 								alt="Maxime Delvaux {post.title.rendered}"
-								width="800"
-								height="640"
+								width={post.acf.image.sizes['medium-width']}
+								height={post.acf.image.sizes['medium-height']}
 							/>
 						{/if}
 						{#if post.acf.video}
