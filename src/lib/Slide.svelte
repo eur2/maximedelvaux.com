@@ -4,11 +4,11 @@
 
 <div class="bg-white z2">
 	<header class="z10 front-header">
-		<h2>
+		<h1>
 			<a class="block p25" href={src.slug}>
 				{src.title.rendered}
 			</a>
-		</h2>
+		</h1>
 	</header>
 
 	{#if src.acf.image === false}

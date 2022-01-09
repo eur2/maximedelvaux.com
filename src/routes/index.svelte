@@ -140,7 +140,7 @@
 							</video>
 						{/if}
 						<header>
-							<h4>{post.title.rendered}</h4>
+							<h2>{post.title.rendered}</h2>
 						</header>
 					</div>
 				</a>
