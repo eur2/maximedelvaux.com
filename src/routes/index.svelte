@@ -1,16 +1,15 @@
 <script context="module">
 	export const prerender = true;
+	export const load = async ({ fetch }) => {
+		const res = await fetch('/api/posts.json');
+		const posts = await res.json();
 
-	export async function load({ fetch }) {
-		const res = await fetch(
-			'https://api.maximedelvaux.com/wp-json/wp/v2/posts?_embed&per_page=100'
-		);
 		return {
 			props: {
-				posts: await res.json()
+				posts
 			}
 		};
-	}
+	};
 </script>
 
 <script>
@@ -119,7 +118,7 @@
 		<!-- {#each filteredPosts as post} -->
 		{#each filteredPosts || [] as post (post.id)}
 			<article id={post.id} class="f25 p125">
-				<a href={post.slug}>
+				<a sveltekit:prefetch href={post.slug}>
 					<div>
 						{#if post.acf.image}
 							<img

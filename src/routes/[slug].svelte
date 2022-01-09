@@ -1,32 +1,18 @@
 <script context="module">
 	export const prerender = true;
-	export async function load({ page, fetch, session, context }) {
-		const url = `https://api.maximedelvaux.com/wp-json/wp/v2/posts?slug=${page.params.slug}`;
-		const res = await fetch(url);
+	export const load = async ({ params, fetch }) => {
+		const slug = params.slug;
+		const res = await fetch(`/api/${slug}.json`);
+		const post = await res.json();
 
-		if (res.ok) {
-			return {
-				props: {
-					post: await res.json()
-				}
-			};
-		}
 		return {
-			status: res.status,
-			error: new Error(`Could not load ${url}`)
+			props: {
+				post
+			}
 		};
-	}
+	};
 </script>
 
-<!-- <script context="module">
-  export async function preload(page) {
-    const { slug } = page.params;
-    const req = await this.fetch(
-      "https://api.maximedelvaux.com/wp-json/wp/v2/posts?slug=" + slug
-    ).then((r) => r.json());
-    return { post: req[0] };
-  }
-</script> -->
 <script>
 	export let post;
 	let visible;
@@ -37,7 +23,7 @@
 	import Siema from 'siema';
 	import { onMount } from 'svelte';
 
-	let lazyContent = post[0].content.rendered
+	let lazyContent = post.content.rendered
 		.replace(/src/gi, 'data-src')
 		.replace(/wp-image-/gi, 'lazy img-');
 
@@ -45,9 +31,8 @@
 		function printSlideIndex() {
 			document.querySelector('.index-current').innerHTML = this.currentSlide + 1;
 		}
-		document.querySelector('.index-total').innerHTML = document.querySelector(
-			'.siema'
-		).childElementCount;
+		document.querySelector('.index-total').innerHTML =
+			document.querySelector('.siema').childElementCount;
 
 		// console.log(document.querySelector('.siema').childElementCount)
 		const mySiema = new Siema({
@@ -103,18 +88,18 @@
 </script>
 
 <svelte:head>
-	<title>{post[0].title.rendered} - Maxime Delvaux</title>
-	<meta name="og:title" content="{post[0].title.rendered} - Maxime Delvaux" />
-	<meta name="twitter:title" content="{post[0].title.rendered} - Maxime Delvaux" />
+	<title>{post.title.rendered} - Maxime Delvaux</title>
+	<meta name="og:title" content="{post.title.rendered} - Maxime Delvaux" />
+	<meta name="twitter:title" content="{post.title.rendered} - Maxime Delvaux" />
 </svelte:head>
 <header class="fixed t0 l0 r0 z10">
 	<div class="flex jc-sb w100">
 		<h1 class="p25">
 			<!-- <button on:click="{handleToggle}"> -->
-			{post[0].title.rendered}
+			{post.title.rendered}
 			<!-- </button> -->
 		</h1>
-		<a sveltekit:prefetch class="block p25" href="./#{post[0].id}">×</a>
+		<a sveltekit:prefetch class="block p25" href="./#{post.id}">×</a>
 	</div>
 </header>
 
@@ -122,7 +107,7 @@
 	<div class="modal p25">
 		<div on:click={handleToggle}>
 			<p class="w100 center"><button on:click={handleToggle}>×</button></p>
-			{@html post[0].acf.text}
+			{@html post.acf.text}
 		</div>
 	</div>
 {/if}

@@ -46,7 +46,7 @@
   </div>
   {/if}
 </header> -->
-{#if $page.path === '/'}
+{#if $page.url.pathname === '/'}
 	<header class="fixed t0 r0 z10 max">
 		<h1>
 			<button on:click={handleToggle}> Maxime Delvaux </button>
