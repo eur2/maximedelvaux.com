@@ -14,11 +14,23 @@
 
 <script>
 	export let posts;
-	console.log(posts);
-	import Slide from '../lib/Slide.svelte';
+	// console.log(posts);
+	import viewport from '$lib/useViewportAction';
+	import lazyimage from '$lib/lazyimage';
+	import Slide from '$lib//Slide.svelte';
 	import Siema from 'siema';
 	import { onMount } from 'svelte';
-
+	onMount(() => {
+		const mySiema = new Siema({
+			duration: 0,
+			draggable: true,
+			loop: true
+		});
+		const prev = document.querySelector('.prev');
+		const next = document.querySelector('.next');
+		prev.addEventListener('click', () => mySiema.prev());
+		next.addEventListener('click', () => mySiema.next());
+	});
 	let r1 = posts[Math.floor(Math.random() * (8 - 4 + 1) + 4)];
 	let r2 = posts[Math.floor(Math.random() * (13 - 9 + 1) + 9)];
 	let r3 = posts[Math.floor(Math.random() * (18 - 14 + 1) + 14)];
@@ -32,61 +44,6 @@
 	$: filteredPosts = posts.filter(
 		(post) => post.title.rendered.toLowerCase().indexOf(searchTerm) !== -1
 	);
-
-	onMount(() => {
-		const mySiema = new Siema({
-			duration: 0,
-			draggable: true,
-			loop: true
-		});
-		const prev = document.querySelector('.prev');
-		const next = document.querySelector('.next');
-		prev.addEventListener('click', () => mySiema.prev());
-		next.addEventListener('click', () => mySiema.next());
-
-		var lazyImages = [].slice.call(document.querySelectorAll('img.lazy'));
-		if (typeof IntersectionObserver !== 'undefined') {
-			let lazyImageObserver = new IntersectionObserver(function (entries, observer) {
-				entries.forEach(function (entry) {
-					if (entry.isIntersecting) {
-						let lazyImage = entry.target;
-						lazyImage.src = lazyImage.dataset.src;
-						lazyImage.srcset = lazyImage.dataset.srcset;
-						lazyImage.classList.remove('lazy');
-						lazyImage.classList.add('loaded');
-						lazyImageObserver.unobserve(lazyImage);
-					}
-				});
-			});
-			lazyImages.forEach(function (lazyImage) {
-				lazyImageObserver.observe(lazyImage);
-			});
-		}
-
-		var lazyVideos = [].slice.call(document.querySelectorAll('video.lazy'));
-		if (typeof IntersectionObserver !== 'undefined') {
-			let lazyVideoObserver = new IntersectionObserver(function (entries, observer) {
-				entries.forEach(function (video) {
-					if (video.isIntersecting) {
-						for (var source in video.target.children) {
-							var videoSource = video.target.children[source];
-							if (typeof videoSource.tagName === 'string' && videoSource.tagName === 'SOURCE') {
-								videoSource.src = videoSource.dataset.src;
-							}
-						}
-
-						video.target.load();
-						video.target.classList.remove('lazy');
-						lazyVideoObserver.unobserve(video.target);
-					}
-				});
-			});
-
-			lazyVideos.forEach(function (lazyVideo) {
-				lazyVideoObserver.observe(lazyVideo);
-			});
-		}
-	});
 </script>
 
 <aside class="fixed b0 r0 p25">
@@ -123,6 +80,7 @@
 					<div>
 						{#if post.acf.image}
 							<img
+								use:lazyimage
 								class="lazy"
 								src=""
 								data-src={post.acf.image.sizes.medium}
@@ -135,8 +93,17 @@
 							/>
 						{/if}
 						{#if post.acf.video}
-							<video class="lazy" autoplay loop playsinline>
-								<source data-src={post.acf.video.url} type="video/mp4" />
+							<video
+								use:lazyimage
+								class="lazy"
+								data-src={post.acf.video.url}
+								type="video/mp4"
+								preload="auto"
+								muted
+								autoplay
+								loop
+								playsinline
+							>
 								<track default kind="captions" />
 							</video>
 						{/if}

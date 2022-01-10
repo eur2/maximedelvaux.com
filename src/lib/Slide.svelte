@@ -1,5 +1,7 @@
 <script>
 	export let src;
+	import viewport from '$lib/useViewportAction';
+	import lazyimage from '$lib/lazyimage';
 </script>
 
 <div class="bg-white z2">
@@ -13,14 +15,24 @@
 
 	{#if src.acf.image === false}
 		<figure class="front-fig">
-			<video class="lazy" autoplay loop playsinline>
-				<source data-src={src.acf.video1080p.url} type="video/mp4" />
+			<video
+				use:lazyimage
+				class="lazy"
+				data-src={src.acf.video1080p.url}
+				type="video/mp4"
+				preload="auto"
+				muted
+				autoplay
+				loop
+				playsinline
+			>
 				<track default kind="captions" />
 			</video>
 		</figure>
 	{:else}
 		<figure class="front-fig">
 			<img
+				use:lazyimage
 				class="lazy"
 				src=""
 				data-src={src.acf.image.sizes.large}
@@ -31,5 +43,5 @@
 			/>
 		</figure>
 	{/if}
-	<a class="hovernone absolute t0 w100 h100vh " href={src.slug}>&nbsp; </a>
+	<a class="hovernone absolute t0 w100 h100vh z10" href={src.slug}>&nbsp; </a>
 </div>

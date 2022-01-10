@@ -19,7 +19,6 @@
 	function handleToggle() {
 		visible = !visible;
 	}
-	// import { page } from '$app/stores';
 	import Siema from 'siema';
 	import { onMount } from 'svelte';
 
