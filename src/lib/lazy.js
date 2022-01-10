@@ -1,6 +1,6 @@
 import viewportAction from '$lib/useViewportAction';
 
-export default function lazyimage(element) {
+export default function lazy(element) {
 	const viewportActionMethods = viewportAction(element);
 	element.addEventListener('enterViewport', enterViewport);
 	

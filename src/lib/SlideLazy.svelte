@@ -1,5 +1,7 @@
 <script>
 	export let src;
+	import viewport from '$lib/useViewportAction';
+	import lazy from '$lib/lazy';
 </script>
 
 <div class="bg-white z2">
@@ -14,7 +16,9 @@
 	{#if src.acf.image === false}
 		<figure class="front-fig">
 			<video
-				src={src.acf.video1080p.url}
+				use:lazy
+				class="lazy"
+				data-src={src.acf.video1080p.url}
 				type="video/mp4"
 				preload="auto"
 				muted
@@ -28,9 +32,13 @@
 	{:else}
 		<figure class="front-fig">
 			<img
-				src={src.acf.image.sizes.large}
-				srcset="{src.acf.image.sizes.thumbnail} 400w, {src.acf.image.sizes.medium} 800w, {src.acf
-					.image.sizes.large} 1600w"
+				use:lazy
+				class="lazy"
+				src=""
+				data-src={src.acf.image.sizes.large}
+				srcset=""
+				data-srcset="{src.acf.image.sizes.thumbnail} 400w, {src.acf.image.sizes.medium} 800w, {src
+					.acf.image.sizes.large} 1600w"
 				alt="Maxime Delvaux {src.title.rendered}"
 			/>
 		</figure>

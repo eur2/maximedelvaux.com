@@ -16,8 +16,9 @@
 	export let posts;
 	// console.log(posts);
 	import viewport from '$lib/useViewportAction';
-	import lazyimage from '$lib/lazyimage';
-	import Slide from '$lib//Slide.svelte';
+	import lazy from '$lib/lazy';
+	import Slide from '$lib/Slide.svelte';
+	import SlideLazy from '$lib/SlideLazy.svelte';
 	import Siema from 'siema';
 	import { onMount } from 'svelte';
 	onMount(() => {
@@ -60,13 +61,13 @@
 <div>
 	<div class="siema">
 		<Slide src={r1} />
-		<Slide src={r2} />
-		<Slide src={r3} />
-		<Slide src={r4} />
-		<Slide src={r5} />
-		<Slide src={r6} />
-		<Slide src={r7} />
-		<Slide src={r8} />
+		<SlideLazy src={r2} />
+		<SlideLazy src={r3} />
+		<SlideLazy src={r4} />
+		<SlideLazy src={r5} />
+		<SlideLazy src={r6} />
+		<SlideLazy src={r7} />
+		<SlideLazy src={r8} />
 	</div>
 	<button class="prev w33 h90 absolute b0 l0" />
 	<button class="next w33 h90 absolute b0 r0" />
@@ -80,7 +81,7 @@
 					<div>
 						{#if post.acf.image}
 							<img
-								use:lazyimage
+								use:lazy
 								class="lazy"
 								src=""
 								data-src={post.acf.image.sizes.medium}
@@ -94,7 +95,7 @@
 						{/if}
 						{#if post.acf.video}
 							<video
-								use:lazyimage
+								use:lazy
 								class="lazy"
 								data-src={post.acf.video.url}
 								type="video/mp4"
