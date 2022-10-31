@@ -1,20 +1,6 @@
-<script context="module">
-	export const prerender = true;
-	export const load = async ({ fetch }) => {
-		const res = await fetch('/api/posts.json');
-		const posts = await res.json();
-
-		return {
-			props: {
-				posts
-			}
-		};
-	};
-</script>
-
 <script>
-	export let posts;
-	// console.log(posts);
+	export let data;
+	const { posts } = data;
 	import viewport from '$lib/useViewportAction';
 	import lazy from '$lib/lazy';
 	import Slide from '$lib/Slide.svelte';
@@ -77,7 +63,7 @@
 		<!-- {#each filteredPosts as post} -->
 		{#each filteredPosts || [] as post (post.id)}
 			<article id={post.id} class="f25 p125">
-				<a sveltekit:prefetch href={post.slug}>
+				<a data-sveltekit-prefetch href={post.slug}>
 					<div>
 						{#if post.acf.image}
 							<img

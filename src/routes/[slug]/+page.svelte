@@ -1,20 +1,6 @@
-<script context="module">
-	export const prerender = true;
-	export const load = async ({ params, fetch }) => {
-		const slug = params.slug;
-		const res = await fetch(`/api/${slug}.json`);
-		const post = await res.json();
-
-		return {
-			props: {
-				post
-			}
-		};
-	};
-</script>
-
 <script>
-	export let post;
+	export let data;
+	const { post } = data;
 	let visible;
 	function handleToggle() {
 		visible = !visible;
@@ -98,14 +84,16 @@
 			{post.title.rendered}
 			<!-- </button> -->
 		</h1>
-		<a sveltekit:prefetch class="block p25" href="./#{post.id}">×</a>
+		<a data-sveltekit-prefetch class="block p25" href="./#{post.id}">×</a>
 	</div>
 </header>
 
 {#if visible}
 	<div class="modal p25">
-		<div on:click={handleToggle}>
-			<p class="w100 center"><button on:click={handleToggle}>×</button></p>
+		<div on:click={handleToggle} on:keydown={handleToggle}>
+			<p class="w100 center">
+				<button on:click={handleToggle} on:keydown={handleToggle}>×</button>
+			</p>
 			{@html post.acf.text}
 		</div>
 	</div>

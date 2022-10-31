@@ -3,38 +3,40 @@
 
 <head>
 	<meta charset="utf-8" />
-	<link rel="icon" href="/favicon.png" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="preload" href="%sveltekit.assets%/NSPOT-Bold.woff2" as="font" crossorigin="anonymous" />
+	<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Maxime Delvaux</title>
 	<meta name="theme-color" content="#ffffff" />
-	<link rel="manifest" href="/manifest.json" crossorigin="use-credentials" />
-	<link rel="preload" href="/NSPOT-Bold.woff2" as="font" crossorigin="anonymous" />
-	<link rel="apple-touch-icon" href="/logo-192.png">
+	<link rel="manifest" href="%sveltekit.assets%/manifest.json" crossorigin="use-credentials" />
+	<link rel="apple-touch-icon" href="%sveltekit.assets%/logo-192.png">
+	<meta name="description" content="Maxime Delvaux is a Belgian architecture photographer based in Brussels." />
+	<meta name="og:title" content="Maxime Delvaux" />
+	<meta name="og:description" content="Maxime Delvaux is a Belgian architecture photographer based in Brussels." />
+	<meta name="og:type" content="website" />
+	<meta name="og:image"
+		content="https://api.maximedelvaux.com/wp-content/uploads/2020/06/AUCBiennalChicago_02-800x640.jpg" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="Maxime Delvaux" />
+	<meta name="twitter:description"
+		content="Maxime Delvaux is a Belgian architecture photographer based in Brussels." />
+	<meta name="twitter:image"
+		content="https://api.maximedelvaux.com/wp-content/uploads/2020/06/AUCBiennalChicago_02-800x640.jpg" />
 	<style>
 		@font-face {
 			font-family: "NSPOT";
-			src: url("NSPOT-Bold.woff") format("woff");
-			src: url("NSPOT-Bold.woff2") format("woff2");
+			src: url("%sveltekit.assets%/NSPOT-Bold.woff") format("woff");
+			src: url("%sveltekit.assets%/NSPOT-Bold.woff2") format("woff2");
 			font-weight: bold;
 			font-style: normal;
 			font-display: swap;
 		}
 	</style>
-	%svelte.head%
-	<title>Maxime Delvaux</title>
-	<meta name="description" content="Maxime Delvaux is a Belgian architecture photographer based in Brussels." />
-	<meta name="og:title" content="Maxime Delvaux" />
-	<meta name="og:description" content="Maxime Delvaux is a Belgian architecture photographer based in Brussels." />
-	<meta name="og:type" content="website" />
-	<meta name="og:image" content="https://api.maximedelvaux.com/wp-content/uploads/2020/06/AUCBiennalChicago_02-800x640.jpg" />
-	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:title" content="Maxime Delvaux" />
-	<meta name="twitter:description"
-		content="Maxime Delvaux is a Belgian architecture photographer based in Brussels." />
-	<meta name="twitter:image" content="https://api.maximedelvaux.com/wp-content/uploads/2020/06/AUCBiennalChicago_02-800x640.jpg" />
+	%sveltekit.head%
 </head>
 
 <body>
-	<div id="svelte">%svelte.body%</div>
+	<div>%sveltekit.body%</div>
 </body>
 
 </html>
