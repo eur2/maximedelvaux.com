@@ -1,53 +1,61 @@
-import { build, version } from '$service-worker';
+import { build, files, version } from '$service-worker';
 
-const name = `cache-${version}`;
+// Create a unique cache name for this deployment
+const CACHE = `cache-${version}`;
+
+const ASSETS = [
+	...build, // the app itself
+	...files // everything in `static`
+];
 
 self.addEventListener('install', (event) => {
-	// @ts-expect-error
-	event.waitUntil(caches.open(name).then((cache) => cache.addAll(build)));
+	// Create a new cache and add all files to it
+	async function addFilesToCache() {
+		const cache = await caches.open(CACHE);
+		await cache.addAll(ASSETS);
+	}
+
+	event.waitUntil(addFilesToCache());
 });
 
 self.addEventListener('activate', (event) => {
-	// @ts-expect-error
-	event.waitUntil(
-		caches.keys().then(async (keys) => {
-			for (const key of keys) {
-				if (!key.includes(version)) caches.delete(key);
-			}
-		})
-	);
+	// Remove previous cached data from disk
+	async function deleteOldCaches() {
+		for (const key of await caches.keys()) {
+			if (key !== CACHE) await caches.delete(key);
+		}
+	}
+
+	event.waitUntil(deleteOldCaches());
 });
 
 self.addEventListener('fetch', (event) => {
-	// @ts-expect-error
-	const { request } = event;
+	// ignore POST requests etc
+	if (event.request.method !== 'GET') return;
 
-	if (request.method !== 'GET' || request.headers.has('range')) return;
+	async function respond() {
+		const url = new URL(event.request.url);
+		const cache = await caches.open(CACHE);
 
-	const url = new URL(request.url);
-	const cached = caches.match(request);
+		// `build`/`files` can always be served from the cache
+		if (ASSETS.includes(url.pathname)) {
+			return cache.match(event.request);
+		}
 
-	if (url.origin === location.origin && build.includes(url.pathname)) {
-		// always return build files from cache
-		// @ts-expect-error
-		event.respondWith(cached);
-	} else if (url.protocol === 'https:' || location.hostname === 'localhost') {
-		// hit the network for everything else...
-		const promise = fetch(request);
+		// for everything else, try the network first, but
+		// fall back to the cache if we're offline
+		try {
+			const response = await fetch(event.request);
 
-		// ...and cache successful responses...
-		promise.then((response) => {
-			// cache successful responses
-			if (response.ok && response.type === 'basic') {
-				const clone = response.clone();
-				caches.open(name).then((cache) => {
-					cache.put(request, clone);
-				});
+			if (response.status === 200) {
+				cache.put(event.request, response.clone());
 			}
-		});
 
-		// ...but if it fails, fall back to cache if available
-		// @ts-expect-error
-		event.respondWith(promise.catch(() => cached || promise));
+			return response;
+		} catch {
+			return cache.match(event.request);
+		}
 	}
+
+	event.respondWith(respond());
 });
