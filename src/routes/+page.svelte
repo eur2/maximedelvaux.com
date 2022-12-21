@@ -63,7 +63,7 @@
 		<!-- {#each filteredPosts as post} -->
 		{#each filteredPosts || [] as post (post.id)}
 			<article id={post.id} class="f25 p125">
-				<a data-sveltekit-prefetch href={post.slug}>
+				<a data-sveltekit-preload-data="hover" href={post.slug}>
 					<div>
 						{#if post.acf.image}
 							<img

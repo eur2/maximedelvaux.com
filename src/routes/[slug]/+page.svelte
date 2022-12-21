@@ -84,7 +84,7 @@
 			{post.title.rendered}
 			<!-- </button> -->
 		</h1>
-		<a data-sveltekit-prefetch class="block p25" href="./#{post.id}">×</a>
+		<a data-sveltekit-preload-data="hover" class="block p25" href="./#{post.id}">×</a>
 	</div>
 </header>
 

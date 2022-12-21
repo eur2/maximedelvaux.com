@@ -1,6 +1,6 @@
 <script>
-	import { getStores, navigating, page, session } from '$app/stores';
-	import '../app.css';
+	import { page } from '$app/stores';
+	import './styles.css';
 	export let data;
 	const { post } = data;
 	let visible;
