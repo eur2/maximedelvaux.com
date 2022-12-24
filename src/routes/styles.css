@@ -17,17 +17,9 @@ body {
 	font-size: 32px;
 	line-height: 1;
 	letter-spacing: 0.04em;
-	/* word-spacing: -0.02em; */
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
-	/* min-height: 100vh;
-    min-height: -webkit-fill-available; */
 }
-
-/* ::selection {
-    text-shadow: none;
-    background: rgb(0, 187, 247);
-    } */
 
 a,
 a:active {
