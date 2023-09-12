@@ -90,7 +90,7 @@
 
 {#if visible}
 	<div class="modal p25">
-		<div on:click={handleToggle} on:keydown={handleToggle}>
+		<div role="button" tabindex="0" on:click={handleToggle} on:keydown={handleToggle}>
 			<p class="w100 center">
 				<button on:click={handleToggle}>×</button>
 			</p>
