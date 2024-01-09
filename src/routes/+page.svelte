@@ -55,8 +55,8 @@
 		<SlideLazy src={r7} />
 		<SlideLazy src={r8} />
 	</div>
-	<button class="prev w33 h90 absolute b0 l0" />
-	<button class="next w33 h90 absolute b0 r0" />
+	<button aria-label="previous" class="prev w33 h90 absolute b0 l0" />
+	<button aria-label="next" class="next w33 h90 absolute b0 r0" />
 </div>
 <main class="flex wrap p125" id="main">
 	{#if filteredPosts && filteredPosts.length > 0}

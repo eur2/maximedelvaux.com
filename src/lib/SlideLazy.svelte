@@ -43,5 +43,5 @@
 			/>
 		</figure>
 	{/if}
-	<a class="hovernone absolute t0 w100 h100vh z10" href={src.slug}>&nbsp; </a>
+	<a aria-label="link" class="hovernone absolute t0 w100 h100vh z10" href={src.slug}>&nbsp; </a>
 </div>
