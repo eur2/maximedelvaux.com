@@ -1,39 +1,44 @@
 <script>
-	export let src;
+  let { src } = $props();
 </script>
 
 <div class="bg-white z2">
-	<header class="z10 front-header">
-		<h1>
-			<a class="block p25" href={src.slug}>
-				{src.title.rendered}
-			</a>
-		</h1>
-	</header>
+  <header class="z10 front-header">
+    <h1>
+      <a class="block p25" href={src.slug}>
+        {src.title.rendered}
+      </a>
+    </h1>
+  </header>
 
-	{#if src.acf.image === false}
-		<figure class="front-fig">
-			<video
-				src={src.acf.video1080p.url}
-				type="video/mp4"
-				preload="auto"
-				muted
-				autoplay
-				loop
-				playsinline
-			>
-				<track default kind="captions" />
-			</video>
-		</figure>
-	{:else}
-		<figure class="front-fig">
-			<img
-				src={src.acf.image.sizes.large}
-				srcset="{src.acf.image.sizes.thumbnail} 400w, {src.acf.image.sizes.medium} 800w, {src.acf
-					.image.sizes.large} 1600w"
-				alt="Maxime Delvaux {src.title.rendered}"
-			/>
-		</figure>
-	{/if}
-	<a aria-label="link" class="hovernone absolute t0 w100 h100vh z10" href={src.slug}>&nbsp; </a>
+  {#if src.acf.image === false}
+    <figure class="front-fig">
+      <video
+        src={src.acf.video1080p.url}
+        type="video/mp4"
+        preload="auto"
+        muted
+        autoplay
+        loop
+        playsinline
+      >
+        <track default kind="captions" />
+      </video>
+    </figure>
+  {:else}
+    <figure class="front-fig">
+      <img
+        src={src.acf.image.sizes.large}
+        srcset="{src.acf.image.sizes.thumbnail} 400w, {src.acf.image.sizes
+          .medium} 800w, {src.acf.image.sizes.large} 1600w"
+        alt="Maxime Delvaux {src.title.rendered}"
+      />
+    </figure>
+  {/if}
+  <a
+    aria-label="link"
+    class="hovernone absolute t0 w100 h100vh z10"
+    href={src.slug}
+    >&nbsp;
+  </a>
 </div>
