@@ -8,12 +8,12 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "^3.2.0",
-    "@sveltejs/kit": "^2.5.7",
-    "@sveltejs/vite-plugin-svelte": "^3.1.0",
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.48.4",
+    "@sveltejs/vite-plugin-svelte": "^6.2.1",
     "siema": "^1.5.1",
-    "svelte": "^5.0.0-next.123",
-    "vite": "^5.2.11"
+    "svelte": "^5.43.5",
+    "vite": "^7.2.2"
   },
   "type": "module"
 }

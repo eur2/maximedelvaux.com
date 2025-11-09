@@ -115,8 +115,8 @@
   <div class="siema">
     {@html lazyContent}
   </div>
-  <button class="prev fixed b0 l0"></button>
-  <button class="next fixed b0 r0"></button>
+  <button title="prev" class="prev fixed b0 l0"></button>
+  <button title="next" class="next fixed b0 r0"></button>
   <div class="fixed b0 l0 p25">
     <span class="index-current"></span><span>/</span><span class="index-total"
     ></span>
